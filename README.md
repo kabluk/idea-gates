@@ -1,5 +1,7 @@
 # idea-gates
 
+![idea-gates](.github/social-preview.png)
+
 A Claude Code skill that kills infeasible ideas **before** you spend money on market research.
 
 Most idea checks start with the market: demand, competitors, CPC. That is the expensive part.
