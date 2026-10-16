@@ -1,0 +1,415 @@
+{
+  "location": "UK",
+  "language": "en",
+  "fetched_for": 6,
+  "rows": [
+    {
+      "keyword": "typeform",
+      "volume": 27100,
+      "cpc": 1.37,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 9,
+          "search_volume": 22200
+        },
+        {
+          "year": 2026,
+          "month": 8,
+          "search_volume": 18100
+        },
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 22200
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 22200
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 27100
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 27100
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 27100
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 27100
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 27100
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 22200
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 27100
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 33100
+        }
+      ]
+    },
+    {
+      "keyword": "tally forms",
+      "volume": 1600,
+      "cpc": 9.7,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 9,
+          "search_volume": 2400
+        },
+        {
+          "year": 2026,
+          "month": 8,
+          "search_volume": 1900
+        },
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 1900
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 1900
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 1000
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 1000
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 1000
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 1000
+        }
+      ]
+    },
+    {
+      "keyword": "typeform pricing",
+      "volume": 390,
+      "cpc": 2.27,
+      "competition": "HIGH",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 9,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 8,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 480
+        }
+      ]
+    },
+    {
+      "keyword": "typeform alternative",
+      "volume": 70,
+      "cpc": 11.33,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 9,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 8,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 210
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 90
+        }
+      ]
+    },
+    {
+      "keyword": "free typeform alternative",
+      "volume": 50,
+      "cpc": 7.43,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 8,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 50
+        }
+      ]
+    },
+    {
+      "keyword": "self hosted typeform",
+      "volume": 10,
+      "cpc": null,
+      "competition": "HIGH",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 8,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        }
+      ]
+    }
+  ]
+}
