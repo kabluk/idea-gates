@@ -115,8 +115,12 @@ guess. Supply (who already sells it) and demand (who is buying right now) are
 different numbers; get both:
 
 - **Kwork** (RU, supply): `node video-advisor/scripts/kwork-scan.mjs "<query>" ...`
-  — offers (competition), p25/median/p75 price, reviews of top sellers (proof
-  that buyers exist). Scan 4–6 queries: the broad service and the narrow ones
+  — offers (competition), p25/median/p75 price, reviews of the top sellers
+  and bookmarks of their gigs. **Seller reviews are the seller's whole
+  history, not this gig's** — a seller with 7,513 reviews over 19 gigs proves
+  the seller, not the niche (his OpenClaw gig had 4 bookmarks). Say "seller
+  with N reviews", never "the gig has N reviews"; the gig's bookmarks are the
+  only public gig-level signal. Scan 4–6 queries: the broad service and the narrow ones
   closest to what the video enables.
 - **Freelancer.com** (EN, demand): `node video-advisor/scripts/freelancer-scan.mjs "<label>@<skill-id>" ...`
   — open jobs, budgets in USD, bids per job. Hundreds of bids per job = a
@@ -148,8 +152,9 @@ and +114% in a year. The "free angle" was free because nobody wanted it.)*
 Reading it: under 50 a month across the checked countries — noise, do not
 build a gig on it; 50–500 — a niche, fine for a narrow gig; 500+ — a market,
 expect competition. For marketplace gigs Google volume measures interest in
-the outcome, not buyers on the platform: the platform's own signal (reviews of
-top sellers on Kwork, open jobs on Freelancer and Upwork) still decides, and
+the outcome, not buyers on the platform: the platform's own signal (gig
+bookmarks and specialised sellers on Kwork, open jobs on Freelancer and
+Upwork) still decides, and
 both must agree before a gig is called promising. For Russian-language gigs
 the KZ/UZ/UA numbers are only a rough proxy — say so, and lean on Kwork
 reviews. Without DataForSEO credentials, write "demand not measured" next to

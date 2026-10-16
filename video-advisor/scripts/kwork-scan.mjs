@@ -7,8 +7,13 @@
 // matter for a quick-money gig:
 //   offers   — how many sellers already sell it (competition)
 //   price    — p25 / median / p75 of the first page (what the market pays)
-//   reviews  — reviews of the top sellers (proof that buyers exist; a niche
-//              with 3000 offers and nobody past 20 reviews has no buyers)
+//   seller reviews — reviews of the top sellers across ALL their gigs. This
+//              is the seller's track record, not this gig's: a seller with
+//              7513 reviews may have zero orders on the gig in question.
+//   bookmarks — read from each top gig's own page: how many buyers saved
+//              this gig. The only gig-level signal Kwork shows publicly (its
+//              queue counter reads 0 for everyone, and review counters on the
+//              gig page are the seller's). Weak, but it is about this gig.
 //
 // No dependencies; HTTP goes through curl, so HTTPS_PROXY is respected.
 //
@@ -55,6 +60,17 @@ function extractItems(html) {
   return [];
 }
 
+// Gig-level signals live only on the gig page.
+function gigSignals(url) {
+  try {
+    const html = execFileSync('curl', ['-sS', '--fail', '--max-time', '30', '-A', 'Mozilla/5.0', url], { encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 });
+    const num = (re) => { const m = html.match(re); return m ? +m[1] : null; };
+    return { bookmarks: num(/"bookmarkCount":(\d+)/), sellerOrders: num(/"orderDoneCount":(\d+)/) };
+  } catch {
+    return {};
+  }
+}
+
 const pct = (sorted, p) => (sorted.length ? sorted[Math.min(sorted.length - 1, Math.floor(p * sorted.length))] : null);
 
 const results = [];
@@ -66,9 +82,10 @@ for (const q of queries) {
     const total = Math.max(0, ...[...html.matchAll(/"total":(\d+),"total_formatted"/g)].map((m) => +m[1]));
     const prices = items.map((x) => +x.price).filter(Boolean).sort((a, b) => a - b);
     const top = items
-      .map((x) => ({ title: x.gtitle, price: +x.price, reviews: +x.userRatingCount || 0, url: `https://kwork.ru${x.url}` }))
-      .sort((a, b) => b.reviews - a.reviews)
-      .slice(0, 5);
+      .map((x) => ({ title: x.gtitle, price: +x.price, sellerReviews: +x.userRatingCount || 0, url: `https://kwork.ru${x.url}` }))
+      .sort((a, b) => b.sellerReviews - a.sellerReviews)
+      .slice(0, 5)
+      .map((t) => ({ ...t, ...gigSignals(t.url) }));
     results.push({ query: q, offers: total, sample: items.length, p25: pct(prices, 0.25), median: pct(prices, 0.5), p75: pct(prices, 0.75), top });
   } catch (e) {
     results.push({ query: q, error: String(e.stderr || e.message).trim().split('\n').pop() });
@@ -78,12 +95,15 @@ for (const q of queries) {
 if (asJson) {
   console.log(JSON.stringify({ fetched: new Date().toISOString().slice(0, 10), results }, null, 2));
 } else {
-  console.log(`Kwork, ${new Date().toISOString().slice(0, 10)} (prices in ₽ from the first page of results)\n`);
+  console.log(`Kwork, ${new Date().toISOString().slice(0, 10)} (prices in ₽ from the first page; seller reviews = all their gigs, not this one; ★ = buyers who saved this gig)\n`);
   for (const r of results) {
     if (r.error) { console.log(`## ${r.query}\n  error: ${r.error}\n`); continue; }
     console.log(`## ${r.query}`);
     console.log(`  offers: ${r.offers} · price p25/median/p75: ${r.p25} / ${r.median} / ${r.p75} (n=${r.sample})`);
-    for (const t of r.top) console.log(`  ${String(t.reviews).padStart(5)} reviews · ${String(t.price).padStart(6)} ₽ · ${t.title}`);
+    for (const t of r.top) {
+      const gig = t.bookmarks == null ? '★?' : `★${t.bookmarks}`;
+      console.log(`  seller ${String(t.sellerReviews).padStart(5)} reviews · gig ${gig.padEnd(4)} · ${String(t.price).padStart(6)} ₽ · ${t.title}`);
+    }
     console.log();
   }
 }
