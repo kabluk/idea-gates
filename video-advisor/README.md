@@ -11,8 +11,9 @@ For every video it writes a private brief:
 - **Money** — freelance gigs this makes sellable, with real market numbers from Russian-speaking and
   international platforms: Kwork via `scripts/kwork-scan.mjs` (offers, price quartiles, reviews of top
   sellers), Freelancer.com via `scripts/freelancer-scan.mjs` (open jobs, USD budgets, bids per job),
-  Fiverr and Upwork via web search,
-  effective hourly rate, and ready gig cards with packages and a kill criterion.
+  Fiverr and Upwork via web search; and a mandatory demand check before any niche is called "free"
+  (`scripts/demand-check.mjs`: Google search volumes with year-over-year trend, the angle measured
+  against the buyer's free alternative); effective hourly rate, and ready gig cards with packages and a kill criterion.
 - **Bigger** — product or business ideas, each run through the six [idea-gates](../README.md) gates.
 - **Plan** — today (≤ 1 hour), this week, 30 days with a kill criterion.
 - **Why it works and how long it lasts** — the lever, and the shelf life of the gig window.

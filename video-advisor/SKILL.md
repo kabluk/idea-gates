@@ -128,6 +128,33 @@ different numbers; get both:
   — budgets and proposal counts from job pages, rates from service pages.
 - Say plainly which numbers are a full scan and which are a sample.
 
+**Demand check — mandatory before calling anything "free", "underserved" or
+"almost nobody does this".** Few competitors means either nobody noticed or
+nobody buys, and the second is more common. Run:
+
+```sh
+node video-advisor/scripts/demand-check.mjs "<what the buyer would search>" "<the free/self-serve alternative>" ...
+```
+
+Google monthly searches over US, UK, DE (Cyrillic queries default to KZ, UZ,
+UA — Google Ads has no data for Russia), year-over-year trend, a flag for
+suspicious steps in the series. Always include in the same run **the
+alternative the buyer already has** (a free tool, a DIY route): if the
+alternative grows while your angle sits at noise level, the buyer solves the
+problem without you. *(Case: "self hosted typeform" — 10 searches a month per
+country; "tally forms", the free tool people actually switched to — 6,700
+and +114% in a year. The "free angle" was free because nobody wanted it.)*
+
+Reading it: under 50 a month across the checked countries — noise, do not
+build a gig on it; 50–500 — a niche, fine for a narrow gig; 500+ — a market,
+expect competition. For marketplace gigs Google volume measures interest in
+the outcome, not buyers on the platform: the platform's own signal (reviews of
+top sellers on Kwork, open jobs on Freelancer and Upwork) still decides, and
+both must agree before a gig is called promising. For Russian-language gigs
+the KZ/UZ/UA numbers are only a rough proxy — say so, and lean on Kwork
+reviews. Without DataForSEO credentials, write "demand not measured" next to
+the claim instead of guessing.
+
 Then a table:
 
 | Gig | Platform | Competition | Price | Proof of buyers | Time per order with this workflow | ≈ per hour | Verdict |
@@ -241,6 +268,9 @@ evidence favours), and the single best next action across all of them.
 - **Guessing the gig market.** "There is demand for landing pages" is not a
   finding; 4513 offers at a median of 8000 ₽ with top sellers at 1000+
   reviews is.
+- **"Nobody does this" without a demand check.** An empty niche is usually
+  empty because there are no buyers. Measure searches for the angle and for
+  the buyer's free alternative before writing "free angle".
 - **Trusting the date of the video as the date of the world.** A tactic from
   2023 presented as current advice is the most common way a summary misleads.
 - **Generic advice.** "Consider building an audience" applies to everyone and
