@@ -1,6 +1,6 @@
 ---
 name: video-advisor
-description: Turn a YouTube video into an advisor's brief instead of a retelling — what the speaker actually claims and how well it is supported, whether it is still true today, the mechanism behind it, business ideas it opens (run through the idea-gates feasibility gates against this founder), a concrete action plan, the philosophical assumption underneath, and red flags. Use whenever the user sends a YouTube link (youtube.com, youtu.be, shorts, live) or a pasted transcript and wants a summary, takeaways, "what can I do with this", "is this worth watching", "разбери видео", "что из этого применить", "сделай выжимку", or asks to compare a new video with ones already analysed.
+description: Turn a YouTube video into two outputs — a private advisor's brief for the user (claims and how well they are supported, whether they are still true today, the mechanism, business ideas run through the idea-gates feasibility gates against this founder, an action plan, the philosophical assumption underneath, red flags) and public post drafts the user approves and publishes under their own name (Telegram, X/Threads, LinkedIn, vc.ru/Хабр, Russian and English). Use whenever the user sends a YouTube link (youtube.com, youtu.be, shorts, live) or a pasted transcript and wants a summary, takeaways, "what can I do with this", "is this worth watching", "разбери видео", "что из этого применить", "сделай выжимку", or asks to compare a new video with ones already analysed, or wants a post / thread / article made from a video.
 ---
 
 # video-advisor — a video in, a decision out
@@ -15,6 +15,15 @@ does it still hold, what would I do with it, starting when.*
 
 So the rule of this skill: **every section must end in something the user can
 believe, check or do.** A paragraph that only restates the speaker is cut.
+
+Every video produces two things with different readers:
+
+- **The brief** — private, for the user only: their founder profile, ideas
+  scored against it, their plan, the uncomfortable question. Never published.
+- **Public post drafts** — for other people, published by the user under their
+  own name after they approve them. Built only from the parts of the brief
+  that are about the world (verified facts, the mechanism, what the video
+  leaves out), never from the parts that are about the user.
 
 ## Step 1 — get the transcript
 
@@ -168,8 +177,24 @@ a header if missing):
 Keep the raw transcript in `research/videos/raw/` — it lets a later question
 ("what did that guy say about pricing?") be answered without refetching.
 
-In the chat reply, show sections 0 and 6 (verdict and plan) and the path to
-the full brief; the user opens the rest when they want it.
+## Step 5 — public post drafts
+
+Read `references/public-formats.md` and follow it: which platforms the
+signal score earns, the format for each (Telegram RU, X/Threads EN, LinkedIn
+EN, vc.ru/Хабр RU long-read only on request), and the rules — first person
+only where it is true, nothing from the private sections, credit the source,
+the headline states the fact rather than the video's clickbait.
+
+Save the drafts to `research/videos/posts/<same slug as the brief>.md` with
+`Статус: черновик`. Nothing is published by this skill: the user edits,
+approves and posts. When the user approves, change the status to
+`согласовано` and the date; when they report it is posted, add the links.
+
+## Reply in chat
+
+Show sections 0 and 6 of the brief (verdict and plan), then the Telegram draft
+in full (it is the shortest and the one most likely to be posted as is), and
+the paths to the full brief and to all drafts.
 
 ## Several videos at once
 

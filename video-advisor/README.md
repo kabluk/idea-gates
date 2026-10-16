@@ -16,6 +16,13 @@ For every video it answers:
 Briefs are saved to `research/videos/` with an `INDEX.md`, so they build up into a library that later
 briefs check new claims against.
 
+Alongside the private brief it writes **public post drafts** you approve and publish under your own
+name: a Telegram post (RU), an X/Threads thread and a LinkedIn post (EN), and on request a vc.ru /
+Хабр long-read. The formats come from what the most-read AI channels do (The Rundown, Simon Willison,
+эйай ньюз, Сиолошная, Data Secrets, Denis Sexy IT) — see `references/public-formats.md`. Nothing from
+the private brief (your profile, ideas, plan) goes into a post, and "I" statements are only ones that
+are true.
+
 ## Install
 
 Clone the repository anywhere and link the skill into your project (or into `~/.claude/skills` for
