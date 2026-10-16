@@ -133,14 +133,26 @@ function viaYtDlp(id, lang) {
   const a = ['--dump-json', '--skip-download', '--no-warnings',
     ...(opt('cookies') ? ['--cookies-from-browser', opt('cookies')] : []),
     `https://www.youtube.com/watch?v=${id}`];
-  const run = (cmd, pre) => execFileSync(cmd, [...pre, ...a], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024, stdio: ['ignore', 'pipe', 'pipe'] });
-  let json;
-  try {
-    json = run('yt-dlp', []);
-  } catch (e) {
-    if (e.code !== 'ENOENT') throw e;
-    json = run('python3', ['-m', 'yt_dlp']); // pip install --user yt-dlp
+  const run = (cmd, pre, extra = []) => execFileSync(cmd, [...pre, ...extra, ...a], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024, stdio: ['ignore', 'pipe', 'pipe'] });
+  // Which binary: yt-dlp on PATH, else the Python module (pip install --user yt-dlp).
+  let bin = ['yt-dlp', []];
+  // The default clients hit "Sign in to confirm you're not a bot" from cloud and VPN
+  // addresses more often; the android_vr client still answered in October 2026.
+  const attempts = [[], ['--extractor-args', 'youtube:player_client=android_vr']];
+  let json, lastErr;
+  for (const extra of attempts) {
+    try {
+      json = run(bin[0], bin[1], extra);
+      break;
+    } catch (e) {
+      if (e.code === 'ENOENT' && bin[0] === 'yt-dlp') {
+        bin = ['python3', ['-m', 'yt_dlp']];
+        try { json = run(bin[0], bin[1], extra); break; } catch (e2) { lastErr = e2; continue; }
+      }
+      lastErr = e;
+    }
   }
+  if (!json) throw lastErr;
   const info = JSON.parse(json);
   const list = [];
   for (const [auto, src] of [[false, info.subtitles], [true, info.automatic_captions]]) {
