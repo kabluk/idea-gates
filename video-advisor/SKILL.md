@@ -110,19 +110,32 @@ and the trap. Write commands and prompts in code blocks, ready to paste.
 
 ### 3. Money: gigs and quick opportunities
 What someone who can now do this can sell **this week** on freelance
-platforms. Check the market, do not guess:
+platforms — Russian-speaking **and** international. Check the market, do not
+guess. Supply (who already sells it) and demand (who is buying right now) are
+different numbers; get both:
 
-- **Kwork** (RU): `node video-advisor/scripts/kwork-scan.mjs "<query>" ...` —
-  number of offers (competition), p25/median/p75 price, reviews of the top
-  sellers (proof that buyers exist). Scan 4–6 queries: the broad service and
-  the narrow ones closest to what the video enables.
-- **Fiverr / Upwork** (EN): they block scripts; use web search for gig pages
-  and prices (`site:fiverr.com "<service>"`), and say the numbers are a sample.
+- **Kwork** (RU, supply): `node video-advisor/scripts/kwork-scan.mjs "<query>" ...`
+  — offers (competition), p25/median/p75 price, reviews of top sellers (proof
+  that buyers exist). Scan 4–6 queries: the broad service and the narrow ones
+  closest to what the video enables.
+- **Freelancer.com** (EN, demand): `node video-advisor/scripts/freelancer-scan.mjs "<label>@<skill-id>" ...`
+  — open jobs, budgets in USD, bids per job. Hundreds of bids per job = a
+  price race; skill ids are listed in the script header.
+- **Fiverr** (EN, supply): blocks scripts; web search `site:fiverr.com "<service>"`
+  — how many gigs exist, how specialised they are, prices where visible.
+- **Upwork** (EN, demand and supply): blocks scripts; web search
+  `site:upwork.com/jobs "<service>"` and `site:upwork.com/services "<service>"`
+  — budgets and proposal counts from job pages, rates from service pages.
+- Say plainly which numbers are a full scan and which are a sample.
 
 Then a table:
 
-| Gig | Platform | Offers | Median price | Top seller reviews | Time per order with this workflow | ≈ per hour | Verdict |
+| Gig | Platform | Competition | Price | Proof of buyers | Time per order with this workflow | ≈ per hour | Verdict |
 |---|---|---|---|---|---|---|---|
+
+End the section with a one-paragraph **"where it sells"** verdict: which
+platform fits this gig and why (language barrier, price level, how saturated,
+whether a newcomer without reviews can get the first order).
 
 How to read it: many offers + top sellers with hundreds of reviews = proven
 demand, hard entry, compete on speed or a narrow angle; few offers + a top

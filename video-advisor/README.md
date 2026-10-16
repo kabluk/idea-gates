@@ -8,8 +8,10 @@ For every video it writes a private brief:
 - **What this opens up** — the new capabilities, one per bullet.
 - **Instruction** — step by step, with exact commands and prompts, every fact checked against today,
   plus the pitfalls the video skips. You can act without watching.
-- **Money** — freelance gigs this makes sellable, with real market numbers (Kwork via
-  `scripts/kwork-scan.mjs`: offers, price quartiles, reviews of top sellers; Fiverr via web search),
+- **Money** — freelance gigs this makes sellable, with real market numbers from Russian-speaking and
+  international platforms: Kwork via `scripts/kwork-scan.mjs` (offers, price quartiles, reviews of top
+  sellers), Freelancer.com via `scripts/freelancer-scan.mjs` (open jobs, USD budgets, bids per job),
+  Fiverr and Upwork via web search,
   effective hourly rate, and ready gig cards with packages and a kill criterion.
 - **Bigger** — product or business ideas, each run through the six [idea-gates](../README.md) gates.
 - **Plan** — today (≤ 1 hour), this week, 30 days with a kill criterion.
