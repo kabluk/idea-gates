@@ -17,37 +17,48 @@ What got **2× a channel's normal views** in the sample: a human story, the
 author's own experiment or project, a debunk ("checked it — not true"), a
 one-liner. A plain retelling of news gets the channel's baseline. So a post
 built on someone else's video earns attention only through what the video
-does not have: **a check with numbers, a debunk of its headline, or the
-author's own test.**
+does not have: **a ready instruction, a verified number, the author's own
+take or test.** A how-to that saves the reader the 15 minutes of watching is
+itself the value.
+
+## The voice: "I found how to do X", not "a video about X"
+
+The post is written by the user, in the first person, as someone who watched
+the video, understood it and is sharing **what they found and how to do it**.
+It is a how-to with an opinion, not a review of the video and not a news
+digest. The reader should be able to act on the post without opening the
+video.
+
+- Yes: «Нашёл, как заставить Claude Code самому рисовать дизайн в Stitch.
+  Вот что нужно…»
+- No: «В новом ролике AI LABS показали…», «Чего в ролике нет…»,
+  «Автор рассказывает…»
 
 ## Rules for every post
 
-1. **First person, but only true first person.** "I checked" is allowed for
-   what the brief actually verified (npm registry, prices, dates). "I tried it"
-   only if the user did — otherwise leave a placeholder
-   `[если пробовали сами — 1–2 фразы о результате]` for them to fill or delete.
-   Never invent personal experience.
-2. **Nothing private leaks.** No content from sections 5–7 of the brief (ideas
-   scored against the founder, the plan, the philosopher's question addressed
-   to the user), nothing from `docs/FOUNDER.md`. The public post is about the
-   news and the check, not about the user's business.
-3. **Credit the source.** Name the channel and link the video. A post that
-   repackages someone's video without credit gets called out — and deserves to.
-4. **The headline is the fact, not the clickbait.** If the video's title
-   overstates ("Google fixed AI design"), the post's headline states what
-   actually happened ("Google shipped a CLI for Stitch") — the gap itself is
-   often the best hook.
-5. **One number beats three adjectives.** Every post carries at least one
-   verified number with its date.
-6. **"What they didn't tell you" is mandatory** when the brief's red flags or
-   relevance check found something. It is the main reason to share the post.
-7. **End with a hook to the next post** when there is one: "I'll test it and
-   come back with numbers" — and then the follow-up is an own-experiment post,
-   the strongest format. Do not promise what the user will not do; mark it as
-   a suggestion in the draft.
-8. **Adapt, do not translate.** The English versions are written for an
-   international audience (no RU-specific references, different examples if
-   needed), not machine-translated from Russian.
+1. **First person, only true first person.** "Нашёл / разобрался / посмотрел"
+   is true — the user has the brief. "Сделал / проверил на своём проекте /
+   заработал" only if the user did it; otherwise leave a placeholder
+   `[если сделали сами — результат: время, цифры]` for them to fill or delete.
+   Never invent results.
+2. **Nothing private leaks.** Nothing from the brief's gig, business and plan
+   sections, nothing from `docs/FOUNDER.md`. Those are the user's edge; the
+   post shares the know-how, not the money plan.
+3. **Steps, not adjectives.** The core of every post is the steps: exact
+   commands, prompts, settings. At least one verified number with its date
+   (a version, a price, a limit).
+4. **"Где споткнётесь"** — the practical pitfalls and their fixes, in the
+   first person ("у меня бы сломалось на…" only if true; otherwise "имейте в
+   виду…"). This replaces any critique of the video.
+5. **The headline is the capability or the result**, not the news and not
+   the video's clickbait: «Claude Code теперь сам рисует дизайн в Stitch —
+   вот как подключить», not «Google исправил AI-дизайн».
+6. **Credit in one line at the end**: «Подсмотрел у <channel>: <link>».
+   Short, but always there — repackaging without credit gets called out.
+7. **Hook to the next post** when the user will really follow up: «Соберу так
+   лендинг и покажу, сколько ушло времени». Marked as optional in the draft.
+8. **Adapt, do not translate.** English versions are written for an
+   international audience, not machine-translated from Russian.
 
 ## Which platforms for which video
 
@@ -55,7 +66,7 @@ Not every video deserves four posts. Default:
 
 | Signal score | Telegram RU | X thread EN | LinkedIn EN | vc.ru / Хабр RU |
 |---|---|---|---|---|
-| ≤ 4 | skip, or a two-line post if the debunk is good | skip | skip | skip |
+| ≤ 4 | skip, or a two-line tip if there is one good trick | skip | skip | skip |
 | 5–6 | yes | yes | only if there is a business angle | no |
 | ≥ 7, or the user ran their own test | yes | yes | yes | offer it |
 
@@ -65,19 +76,22 @@ editing, and it is best when it contains their own experiment.
 ## Telegram (RU), 800–1300 characters
 
 ```
-**<Факт одной строкой — что произошло, без кликбейта>**
+**<Что теперь можно сделать — одной строкой>**
 
-<2 предложения: что именно вышло / случилось, дата, одна проверенная цифра.>
+<1–2 предложения от первого лица: что нашёл и почему это полезно. Одна проверенная цифра.>
 
-<Как это работает / как применить — 3–4 пункта через «—»>
+Как сделать:
+1. <шаг с точной командой / промптом>
+2. <шаг>
+3. <шаг>
 
-Чего в ролике нет: <пробелы, оговорки, проверенные факты, которые меняют картину>.
+Где споткнётесь: <1–2 ловушки и как их обойти>.
 
-<Своя мысль — одно-два предложения. Механизм, а не пересказ.>
+<Своя мысль — одно-два предложения: зачем это на самом деле, механизм.>
 
-<Крючок: «Проверю сам и вернусь с цифрами» — только если пользователь это сделает.>
+<Крючок (опционально): «Соберу так … и покажу цифры».>
 
-Источник: <канал>, <ссылка на видео>
+Подсмотрел у <канал>: <ссылка>
 ```
 
 As a text post this fits easily (limit 4096). A caption under a picture is
@@ -89,11 +103,13 @@ two, functional (📊 🛠), never decorative chains.
 
 ## X / Threads (EN), 5–7 posts
 
-- Post 1 (≤ 280 chars): the fact + the gap. Must work alone — most people read
-  only this one. No "🧵" or "a thread" filler.
-- Posts 2–5: one idea each — how it works, the numbers, what's missing.
-- Post 6: the takeaway (the mechanism).
-- Last post: source credit + link. Links in post 1 cut reach on X; put them last.
+- Post 1 (≤ 280 chars): the capability + why it matters, first person ("Found
+  a way to…"). Must work alone — most people read only this one. No "🧵"
+  filler.
+- Posts 2–5: the steps, one per post, with exact commands or prompts.
+- Post 6: the pitfall and the fix, or the take (the mechanism).
+- Last post: "Picked this up from <channel>" + link. Links in post 1 cut reach
+  on X; put them last.
 
 Threads takes the same text; posts can be up to 500 characters, so merge pairs.
 
@@ -104,17 +120,21 @@ Business framing: what this changes for a team or a product, in money or time.
 ```
 <Hook line — a claim or number, under 150 characters (the "…see more" cut).>
 
-<Blank line, then 2–3 short paragraphs: what happened, what it means for teams.>
+<Blank line, then 2–3 short paragraphs, first person: what I found, what it
+changes for a team in time or money.>
 
-What the demo doesn't show:
-→ <point>
-→ <point>
+How it works:
+→ <step>
+→ <step>
+→ <step>
+
+What to watch for: <the pitfall, one line>
 
 <The takeaway in one sentence.>
 
 <Question to the reader — a real one, not engagement bait.>
 
-Source: <channel> (link in the first comment)
+Picked this up from <channel> (link in the first comment)
 ```
 
 LinkedIn penalises external links in the post body; the draft says "link in
@@ -124,14 +144,14 @@ the first comment" and gives the link separately.
 
 Simon Willison's structure, adapted:
 
-1. Заголовок: факт + обещание проверки («Google выпустил CLI для Stitch:
-   проверил, сколько стоит один лендинг»).
-2. Лид: 2–3 предложения — что произошло и что читатель узнает.
+1. Заголовок: возможность + результат («Claude Code + Stitch: собрал лендинг
+   за N минут — пошагово»).
+2. Лид: 2–3 предложения — что я сделал и что читатель унесёт.
 3. Что это и зачем (кратко, со ссылками на первоисточники).
 4. Как я это сделал — точные команды и промпты, блоки кода.
 5. Что получилось — скриншоты, цифры (время, деньги, токены).
-6. Чего не говорят в роликах — оговорки, ограничения, проверенные факты.
-7. Вывод — механизм, когда это применять и когда нет.
+6. Где споткнётесь — ловушки и обходы.
+7. Вывод — когда это применять и когда нет.
 
 Хабр не любит самопиар и пересказ видео без своей работы; без раздела «как я
 это сделал» статью туда не отправлять — предложить vc.ru или отложить до
@@ -158,8 +178,9 @@ Save drafts to `research/videos/posts/<same-slug-as-brief>.md`:
 ...
 ## Перед публикацией
 - [ ] заполнить или удалить плейсхолдеры [ … ]
-- [ ] крючок «проверю сам» — оставить, только если правда будете проверять
+- [ ] крючок «соберу и покажу» — оставить, только если правда сделаете
 ```
 
-Before handing the draft over, re-read it against rules 1–2: every "I"
-statement must be true, and nothing from the private sections may appear.
+Before handing the draft over, re-read it against the voice and rules 1–2:
+no sentence describes the video ("в ролике", "автор", "показали"), every "I"
+statement is true, and nothing from the private sections appears.

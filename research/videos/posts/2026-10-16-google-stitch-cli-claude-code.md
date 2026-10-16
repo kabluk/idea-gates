@@ -1,77 +1,78 @@
-# Посты: Google Just Fixed AI Design By Releasing This
+# Посты: Claude Code + Google Stitch
 
 Статус: черновик
 Бриф: ../2026-10-16-google-stitch-cli-claude-code.md
-Видео: https://www.youtube.com/watch?v=au2TI8sdq8E
-Сигнал брифа: 5/10 → Telegram RU + X EN + LinkedIn EN (есть деловой угол). Лонгрид для vc.ru/Хабра — только после собственной проверки.
+Источник: https://www.youtube.com/watch?v=au2TI8sdq8E
+Сигнал 6/10 → Telegram RU + X EN + LinkedIn EN. Хабр/vc.ru — после того как соберёте свой лендинг и будут цифры.
 
 ## Telegram (RU)
 
-**Google выпустил CLI для Stitch — теперь Claude Code сам рисует дизайн**
+**Claude Code теперь сам рисует дизайн в Google Stitch — вот как подключить**
 
-1 октября в npm появился `@google/stitch` — официальный CLI дизайн-инструмента Google. Раньше, чтобы агент управлял Stitch, нужно было настраивать MCP через Google Cloud. Теперь хватает `npm i -g @google/stitch && stitch login`.
+Нашёл связку, которая заменяет дизайнера на лендингах: у Stitch с 1 октября есть официальный CLI, и Claude Code управляет им сам — генерирует варианты, отбраковывает слабые и собирает из лучшего живой сайт.
 
-Как это используют в ролике AI LABS:
-— Claude опрашивает вас и пишет `brief.md`; все промпты идут из него, поэтому стиль дизайнов не «гуляет»
-— просит у Stitch несколько вариантов и сам отбраковывает слабые (у них вышло 8 итераций)
-— отдельный скилл-ревьюер сверяет сайт с макетом на трёх ширинах экрана; без него сайт ломался на телефоне
+Как сделать:
+1. `npm i -g @google/stitch && stitch login`
+2. `stitch agent-skills add`, затем скопировать `.agents/skills` в `.claude/skills` — иначе Claude скилл не увидит
+3. Попросить Claude проинтервьюировать вас и записать всё в `brief.md` — все промпты в Stitch идут из него, и стиль не «гуляет»
+4. «Сделай в Stitch 3–4 варианта по brief.md, DESKTOP и MOBILE, исправляй проблемные» → «собери сайт из лучшего»
+5. Отдельным шагом — проверка скриншотами на 375/768/1440 px
 
-Чего в ролике нет: ни времени, ни расхода кредитов. Stitch бесплатный, но с дневным лимитом, а 8 итераций на страницу — это заметная часть лимита. CLI вышел две недели назад, версия 0.11: команды ещё будут меняться. А заголовок «Google исправил AI-дизайн» — это про бета-CLI, не про дизайн.
+Где споткнётесь: ошибка `MISSING_CANVAS_CREDENTIALS` — нужен `STITCH_API_KEY` даже после логина. И если не просить MOBILE, сайт развалится на телефоне.
 
-Главное тут не Stitch, а схема: один бриф → генератор → независимый критик. Она переносится на любую работу с агентами, и именно критик делает результат лучше, а не количество итераций.
+Главное тут даже не Stitch, а схема: один бриф → генератор → независимый проверяющий. Качество делает проверяющий, а не число попыток.
 
-[если пробовали сами — 1–2 фразы о результате]
+[если сделали сами — результат: время, цифры]
 
-Проверю на своём лендинге и вернусь с цифрами: сколько времени и кредитов уходит на одну страницу.
-
-Источник: AI LABS, https://www.youtube.com/watch?v=au2TI8sdq8E
+Подсмотрел у AI LABS: https://www.youtube.com/watch?v=au2TI8sdq8E
 
 ## X thread (EN)
 
-1/ Google shipped an official CLI for Stitch on Oct 1. Claude Code can now design in Stitch directly — no Google Cloud MCP setup. The demo everyone's sharing skips the two numbers that matter: time and credits.
+1/ Found a setup that turns Claude Code into a web designer: Google Stitch got an official CLI on Oct 1, so the agent can generate designs, reject weak ones and build the site from the best. Here's how to wire it up.
 
-2/ Setup is two commands: `npm i -g @google/stitch` and `stitch login`. Add the Stitch skill to `.claude/skills/` and the agent knows the tool exists and how to use it.
+2/ Install and log in:
+npm i -g @google/stitch
+stitch login
+Then `stitch agent-skills add` — and copy .agents/skills into .claude/skills, or Claude Code won't see the skill.
 
-3/ The workflow that makes it work isn't Stitch itself:
-— the agent interviews you and writes brief.md
-— every Stitch prompt comes from that one brief, so styles stop drifting
-— the agent generates variants and rejects weak ones (8 rounds in the demo)
+3/ Have Claude interview you and write brief.md: the story the page tells, section by section. Every Stitch prompt comes from that one file, so the designs stop drifting in style.
 
-4/ The step worth stealing: a separate review skill that diffs the built site against the design at phone, tablet and desktop widths. Without it, sites looked fine on desktop and broke on mobile — Stitch designed for desktop only.
+4/ Prompt: "Using brief.md, create 3–4 Stitch variants for DESKTOP and MOBILE; regenerate any with problems." Then: "Download the best one and build the site."
 
-5/ What's missing: no timing, no credit count. Stitch is free but capped daily, and 8 rounds per page eats into that. The CLI is v0.11 and two weeks old. "Google fixed AI design" = a beta CLI shipped.
+5/ Add a review step: a skill that screenshots the page at 375 / 768 / 1440 px and fixes what broke. Skip it and the desktop-only design falls apart on phones.
 
-6/ The takeaway generalizes beyond design: one written brief → a generator → an independent critic. Quality comes from the critic, not from more generations.
+6/ Gotcha: some commands fail with MISSING_CANVAS_CREDENTIALS even after login — set STITCH_API_KEY. And keep variants to 3–4 per round; Stitch is free but credit-capped daily.
 
-7/ Source: AI LABS — https://www.youtube.com/watch?v=au2TI8sdq8E
-I'll run it on a real landing page and post the time and credit numbers.
+7/ Picked this up from AI LABS: https://www.youtube.com/watch?v=au2TI8sdq8E
 
 ## LinkedIn (EN)
 
-Google quietly shipped a CLI for Stitch on October 1 — and it changes who does the design work.
+A coding agent can now do a designer's first draft — and check its own work.
 
-Until now, getting an AI agent to drive Stitch meant setting up an MCP server through Google Cloud. Now it's two terminal commands, and a coding agent like Claude Code can generate, compare and reject design variants on its own, then build the site from the winner.
+Google's Stitch got an official command-line tool on October 1. I wired it into Claude Code: the agent interviews me, writes a brief, generates several design variants in Stitch, throws out the weak ones and builds a responsive site from the winner.
 
-The interesting part isn't the tool. It's the workflow around it: one written brief that every prompt comes from, several generated variants, and a separate review step that checks the result on phone, tablet and desktop. In the demo, that review caught a site that looked right on desktop and broke on mobile.
+What made the difference wasn't the generator. It was two pieces around it: one written brief that every prompt comes from, and a separate reviewer step that screenshots the page on phone, tablet and desktop and fixes what broke.
 
-What the demo doesn't show:
-→ how long it takes (8 design rounds for one page)
-→ how many of Stitch's free daily credits that burns
-→ that the CLI is v0.11, two weeks old, in a Google Labs beta
+How it works:
+→ npm i -g @google/stitch, stitch login, add the Stitch skill to Claude Code
+→ agent interviews you → brief.md
+→ 3–4 variants in Stitch → build the best → automated review at three screen widths
 
-For teams, the lesson is bigger than design: generation is cheap now. The brief and the independent reviewer are where the quality — and the human judgement — live.
+What to watch for: some commands need an API key even after login, and Stitch's free tier is capped daily.
 
-Who on your team owns the "reviewer" role when an agent produces the first draft?
+For teams, generation is no longer the bottleneck. Writing the brief and owning the review are where the judgement — and the value — now sit.
 
-Source: AI LABS (link in the first comment)
+Who owns the reviewer role on your team when an agent does the first draft?
+
+Picked this up from AI LABS (link in the first comment)
 
 ## Ссылка для первого комментария LinkedIn
 
-Video walkthrough: https://www.youtube.com/watch?v=au2TI8sdq8E · Package: https://www.npmjs.com/package/@google/stitch
+https://www.youtube.com/watch?v=au2TI8sdq8E · https://www.npmjs.com/package/@google/stitch
 
 ## Перед публикацией
 
-- [ ] заполнить или удалить плейсхолдер `[если пробовали сами …]` в Telegram
-- [ ] крючок «проверю и вернусь с цифрами» (Telegram, X 7/) — оставить, только если правда будете проверять; иначе удалить последнюю фразу
-- [ ] X: ссылка стоит в последнем посте, не переносить её в первый
-- [ ] LinkedIn: ссылку — в первый комментарий, не в текст поста
+- [ ] заполнить или удалить `[если сделали сами …]` в Telegram
+- [ ] LinkedIn пишет «I wired it into Claude Code» — оставить, только если правда подключили; иначе заменить на «Here's how to wire it…»
+- [ ] X: ссылка в последнем посте, не в первом
+- [ ] LinkedIn: ссылку — в первый комментарий

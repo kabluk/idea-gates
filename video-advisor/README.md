@@ -2,25 +2,27 @@
 
 A Claude Code skill: send it a YouTube link, get back an advisor's brief instead of a retelling.
 
-For every video it answers:
+For every video it writes a private brief:
 
-- **Verdict** — what the video is worth to you, whether to watch it yourself (and which minutes), signal score.
-- **Claims worth keeping** — with timestamps, the kind of evidence behind each, and how strong it is.
-- **Is it still true?** — time-sensitive claims checked against today, with web search, not memory.
-- **Strategist** — the mechanism behind the tactic, who captures the value, how long the window stays open.
-- **Business analyst** — 1–3 ideas for *you*, each run through the six [idea-gates](../README.md) gates against your `docs/FOUNDER.md`.
-- **Planner** — one action for today (≤ 1 hour), steps for the week, a 30-day experiment with a kill criterion.
-- **Philosopher** — the assumption underneath, the strongest counter-view, one question to sit with.
-- **Red flags** — the speaker's incentives, survivorship bias, numbers without a denominator.
+- **Verdict** — what the video gives you, signal score, whether to watch it yourself.
+- **What this opens up** — the new capabilities, one per bullet.
+- **Instruction** — step by step, with exact commands and prompts, every fact checked against today,
+  plus the pitfalls the video skips. You can act without watching.
+- **Money** — freelance gigs this makes sellable, with real market numbers (Kwork via
+  `scripts/kwork-scan.mjs`: offers, price quartiles, reviews of top sellers; Fiverr via web search),
+  effective hourly rate, and ready gig cards with packages and a kill criterion.
+- **Bigger** — product or business ideas, each run through the six [idea-gates](../README.md) gates.
+- **Plan** — today (≤ 1 hour), this week, 30 days with a kill criterion.
+- **Why it works and how long it lasts** — the lever, and the shelf life of the gig window.
 
 Briefs are saved to `research/videos/` with an `INDEX.md`, so they build up into a library that later
 briefs check new claims against.
 
-Alongside the private brief it writes **public post drafts** you approve and publish under your own
-name: a Telegram post (RU), an X/Threads thread and a LinkedIn post (EN), and on request a vc.ru /
+Alongside the private brief it writes **first-person how-to post drafts** — as if you watched the
+video and are sharing what you found — that you approve and publish under your own name: a Telegram post (RU), an X/Threads thread and a LinkedIn post (EN), and on request a vc.ru /
 Хабр long-read. The formats come from what the most-read AI channels do (The Rundown, Simon Willison,
 эйай ньюз, Сиолошная, Data Secrets, Denis Sexy IT) — see `references/public-formats.md`. Nothing from
-the private brief (your profile, ideas, plan) goes into a post, and "I" statements are only ones that
+the private brief (gigs, ideas, plan) goes into a post, and "I" statements are only ones that
 are true.
 
 ## Install

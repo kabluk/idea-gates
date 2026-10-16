@@ -1,6 +1,6 @@
 ---
 name: video-advisor
-description: Turn a YouTube video into two outputs — a private advisor's brief for the user (claims and how well they are supported, whether they are still true today, the mechanism, business ideas run through the idea-gates feasibility gates against this founder, an action plan, the philosophical assumption underneath, red flags) and public post drafts the user approves and publishes under their own name (Telegram, X/Threads, LinkedIn, vc.ru/Хабр, Russian and English). Use whenever the user sends a YouTube link (youtube.com, youtu.be, shorts, live) or a pasted transcript and wants a summary, takeaways, "what can I do with this", "is this worth watching", "разбери видео", "что из этого применить", "сделай выжимку", or asks to compare a new video with ones already analysed, or wants a post / thread / article made from a video.
+description: Turn a YouTube video into action instead of a retelling — a private brief for the user (what it opens up, a step-by-step instruction checked against today, freelance gigs it makes sellable with real Kwork/Fiverr market data, bigger ideas through the idea-gates gates, a plan with a kill criterion) and first-person how-to post drafts the user approves and publishes under their own name (Telegram, X/Threads, LinkedIn, vc.ru/Хабр, Russian and English). Use whenever the user sends a YouTube link (youtube.com, youtu.be, shorts, live) or a pasted transcript and wants a summary, takeaways, "what can I do with this", "is this worth watching", "разбери видео", "что из этого применить", "сделай выжимку", or asks to compare a new video with ones already analysed, or wants a post / thread / article made from a video.
 ---
 
 # video-advisor — a video in, a decision out
@@ -10,20 +10,21 @@ description: Turn a YouTube video into two outputs — a private advisor's brief
 People in long videos say genuinely useful things, but watching costs an hour
 and a retelling costs almost as much attention while giving almost nothing:
 a summary of an interview is still an interview. What the user wants is what
-a good advisor would say after watching it for them: *is any of this true,
-does it still hold, what would I do with it, starting when.*
+they would know if they had watched it, turned into action: *what can I now
+do, exactly how, is it still true today, and where can I make money with it
+this week.*
 
 So the rule of this skill: **every section must end in something the user can
 believe, check or do.** A paragraph that only restates the speaker is cut.
 
 Every video produces two things with different readers:
 
-- **The brief** — private, for the user only: their founder profile, ideas
-  scored against it, their plan, the uncomfortable question. Never published.
-- **Public post drafts** — for other people, published by the user under their
-  own name after they approve them. Built only from the parts of the brief
-  that are about the world (verified facts, the mechanism, what the video
-  leaves out), never from the parts that are about the user.
+- **The brief** — private, for the user only: the instruction, the gigs and
+  their market numbers, ideas scored against the founder profile, the plan.
+  Never published.
+- **Public post drafts** — the user's own first-person how-to posts, published
+  under their name after they approve them. They share the know-how (the
+  instruction, the pitfalls, a take), never the money plan.
 
 ## Step 1 — get the transcript
 
@@ -68,99 +69,113 @@ If it fails:
 ## Step 3 — the brief
 
 Write in the user's language (the language they wrote to you in), not the
-video's. Keep the whole brief readable in **under five minutes**; length goes
-into the claims table, not into prose. Use this structure:
+video's. Readable in **under five minutes**, except the instruction, which is
+as long as the steps need.
+
+**Voice: describe the thing, not the video.** The user wants what they would
+know if they had watched it, turned into action. Never "the speaker says",
+"in the video they show", "the author explains". Write "Stitch now has a CLI;
+install it with…", not "the video shows how to install the CLI". Timestamps
+appear only as references in brackets, `[05:26]`, so the user can jump to the
+moment if they want to see it.
+
+Every fact the instruction depends on (a command, a version, a price, a limit,
+"free") is **checked against today** with the package registry, official docs
+or web search, and the check date is written next to it. A video is a lead,
+not a source.
+
+Structure:
 
 ### 0. Verdict (3 lines)
-- **One sentence**: what this video is actually worth to this user.
-- **Watch it yourself?** No / only `[mm:ss]–[mm:ss]` / yes, all of it — and why.
-- **Signal score 1–10**: density of claims that are new, supported and usable.
-  A charismatic hour with two ideas is a 3.
+- **What this gives me** — one sentence: the new capability or opportunity.
+- **Signal 1–10** — how much usable, still-true, new material there is.
+- **Watch it yourself?** No / only `[mm:ss]–[mm:ss]` / yes — and why.
 
-### 1. Core thesis
-Two or three sentences: the one idea the whole video rests on, in your own
-words. Not the topics covered — the claim.
+### 1. What this opens up
+3–5 bullets, each a concrete capability: "now X can be done in Y instead of Z".
+For a video about new features or a product update: one bullet per feature
+that matters, with what it replaces. Skip features that change nothing.
 
-### 2. Claims worth keeping
-A table, 3–8 rows, only claims that change a decision:
+### 2. Instruction — how to do it
+A playbook the user can follow without watching:
+- **What you need** — accounts, tools, cost, limits (checked, with date).
+- **Steps** — numbered; exact commands, exact prompts, where to click; what
+  you should see after each step; rough time per step.
+- **Where it breaks** — the pitfalls (including ones the video skips) and the
+  fix for each.
+- **Result** — what you have at the end, and how long the whole thing takes.
 
-| Claim | [mm:ss] | Evidence | Strength |
-|---|---|---|---|
+For a feature-review video: per feature — how to turn it on, one concrete use,
+and the trap. Write commands and prompts in code blocks, ready to paste.
 
-Evidence is one of: *data* (numbers with a source), *case* (their own result),
-*anecdote* (someone they know), *opinion*, *sales pitch*. Strength: strong /
-plausible / weak / wrong. One case is not a pattern — say so.
+### 3. Money: gigs and quick opportunities
+What someone who can now do this can sell **this week** on freelance
+platforms. Check the market, do not guess:
 
-### 3. Is it still true? (relevance)
-For each claim that depends on time (prices, channel performance, tool
-capabilities, laws, market size, "nobody is doing X yet"): is it still true on
-today's date? **Check the two or three load-bearing ones with web search**
-rather than memory, and give the date of what you found. Mark each:
-*still true* / *changed: how* / *could not verify*. "Nobody is doing X yet" in
-a video with 500K views is almost by definition no longer true.
+- **Kwork** (RU): `node video-advisor/scripts/kwork-scan.mjs "<query>" ...` —
+  number of offers (competition), p25/median/p75 price, reviews of the top
+  sellers (proof that buyers exist). Scan 4–6 queries: the broad service and
+  the narrow ones closest to what the video enables.
+- **Fiverr / Upwork** (EN): they block scripts; use web search for gig pages
+  and prices (`site:fiverr.com "<service>"`), and say the numbers are a sample.
 
-### 4. Strategist: the mechanism
-Why does the thing they describe work — what is the underlying lever (an
-information asymmetry, a platform subsidy, a new regulation, a cost that fell,
-a habit that shifted)? Then:
-- **Who captures the value** and who will copy it once it is public;
-- **Second-order effects**: what happens when many viewers act on this;
-- **Shelf life**: how long the window stays open, and the signal that it closed.
+Then a table:
 
-A mechanism outlives the tactic. If the speaker's tactic is already dead, the
-mechanism may still point somewhere new — say where.
+| Gig | Platform | Offers | Median price | Top seller reviews | Time per order with this workflow | ≈ per hour | Verdict |
+|---|---|---|---|---|---|---|---|
 
-### 5. Business analyst: ideas for this user
-1–3 business or project ideas the video opens up **for this founder**, not
-the speaker's own business restated. Run each through the six idea-gates
-gates, one line per gate, and stop at the first failure:
+How to read it: many offers + top sellers with hundreds of reviews = proven
+demand, hard entry, compete on speed or a narrow angle; few offers + a top
+seller with real reviews = an underserved niche, the best case; few offers
+and nobody with reviews = no buyers. Effective hourly rate is median price
+divided by honest hours per order **including** revisions and communication.
+
+For the best 1–2 gigs write a **ready gig card**: title (RU for Kwork, EN for
+Fiverr), what the buyer gets, three packages with prices and delivery times,
+the 2–3 portfolio pieces to make first with this very workflow (a new seller
+without examples gets no orders), and the kill criterion (e.g. "no order
+within 14 days after 3 portfolio pieces → drop or reprice"). Note the
+platform's rules on AI-made work when they matter (Fiverr asks sellers to be
+transparent about AI use; do not sell AI output as hand-made).
+
+If the video gives nothing sellable, say so in one line and skip the section.
+
+### 4. Bigger: product or business
+Only if the video opens something beyond gigs. 1–2 ideas for **this founder**,
+each through the six idea-gates gates, one line per gate, stop at the first
+failure:
 
 1. **First step** — the first action needing a stranger's consent; will they
    give it to this founder as they are today?
-2. **Trust** — does it need access to customers' money, accounts or sensitive
-   data? Anonymous founder without a trust carrier fails.
-3. **Small-customer math** — typical (not best) customer × honest price per
-   month, one multiplication.
-4. **Measurability** — the one unmeasured number it rests on; can the founder
-   measure it alone within their validation budget?
-5. **Channel** — how they personally reach the first ten customers without
-   anything on their "will not do" list.
-6. **Regulation** — does it fall under a licence (legal, tax, financial,
-   medical, immigration advice, payments, children's data)?
+2. **Trust** — access to customers' money, accounts or sensitive data?
+3. **Small-customer math** — typical customer × honest price per month.
+4. **Measurability** — the one unmeasured number; measurable alone, within
+   budget?
+5. **Channel** — how they personally reach the first ten customers.
+6. **Regulation** — does it fall under a licence?
 
-An idea that dies at a gate is still a useful result — write which gate and
-why in one line. If an idea survives all six and the idea-gates skill is
-installed, offer to run the full idea-gates pass (market data, red-team).
-If the video has no business angle, say so and skip this section; do not
-manufacture one.
+If an idea survives and the idea-gates skill is installed, offer the full pass.
 
-### 6. Planner: what to do
-- **Today, ≤ 1 hour**: one concrete action that tests the most valuable claim
-  cheaply (a search, a message, a calculation, a landing page, a query in a
-  data tool). Name the exact thing to type or open.
-- **This week**: 2–3 steps, each with what "done" looks like.
-- **30 days**: the experiment, its success metric, its budget in money and
-  hours, and the **kill criterion** — the result that means stop.
-If the honest advice is "do nothing, this does not apply to you", say that;
-it saves the user more time than any plan.
+### 5. Plan
+- **Today, ≤ 1 hour** — the one action, exact command or page to open.
+- **This week** — 2–3 steps with what "done" looks like (usually: run the
+  instruction once, make portfolio pieces, publish the gig).
+- **30 days** — the experiment, metric, budget in money and hours, and the
+  **kill criterion**.
 
-### 7. Philosopher: the assumption underneath
-- What does the speaker take for granted about people, markets or a good
-  life? (e.g. "growth is always good", "hustle beats leverage", "freedom =
-  location independence")
-- The strongest **counter-view**, stated fairly, in two sentences.
-- What it means for *this* user's priorities, if `FOUNDER.md` says anything
-  about them.
-- **One question to sit with** — the question the video raises but does not
-  answer. One, not a list.
+### 6. Why it works and how long it lasts
+Two or three short paragraphs, the strategist and the philosopher together:
+the lever underneath (a cost that fell, a new tool, a platform shift), who
+will copy it and how fast — **the shelf life of the gig opportunity** in
+particular, since a trick shown to 50K viewers fills the gig market within
+weeks — and one question worth sitting with.
 
-### 8. Red flags
-The speaker's incentives (course, agency, affiliate links, fund portfolio —
-check the description), survivorship bias, cherry-picked timeframes, numbers
-without a denominator, "anyone can do this". If there are none, write "none
-found" — do not invent scepticism for balance.
+### 7. Watch out
+The source's incentives (sponsors, paid community, agency upsell — check the
+description), claims that did not survive the check, numbers without a
+denominator. Short; "none found" is a valid answer.
 
-### 9. Remember
+### 8. Remember
 One line the user could still recall in a month. Plus 3–5 tags.
 
 ## Step 4 — save it
@@ -171,7 +186,7 @@ score at the top. Add one line to `research/videos/INDEX.md` (create it with
 a header if missing):
 
 ```
-| date | title (linked to the brief) | channel | signal | ideas that survived gates | tags |
+| date | title (linked to the brief) | channel | signal | best gig or idea | tags |
 ```
 
 Keep the raw transcript in `research/videos/raw/` — it lets a later question
@@ -179,11 +194,13 @@ Keep the raw transcript in `research/videos/raw/` — it lets a later question
 
 ## Step 5 — public post drafts
 
-Read `references/public-formats.md` and follow it: which platforms the
-signal score earns, the format for each (Telegram RU, X/Threads EN, LinkedIn
-EN, vc.ru/Хабр RU long-read only on request), and the rules — first person
-only where it is true, nothing from the private sections, credit the source,
-the headline states the fact rather than the video's clickbait.
+Read `references/public-formats.md` and follow it. The posts are written by
+the user in the first person, as someone who watched the video and is sharing
+what they found and how to do it — a how-to, not a review of the video. Which
+platforms the signal score earns, the format for each (Telegram RU, X/Threads
+EN, LinkedIn EN, vc.ru/Хабр RU long-read on request), and the rules: "I" only
+where it is true, nothing from the private sections (gigs, ideas, plan),
+credit the source in one line at the end.
 
 Save the drafts to `research/videos/posts/<same slug as the brief>.md` with
 `Статус: черновик`. Nothing is published by this skill: the user edits,
@@ -192,7 +209,7 @@ approves and posts. When the user approves, change the status to
 
 ## Reply in chat
 
-Show sections 0 and 6 of the brief (verdict and plan), then the Telegram draft
+Show sections 0, 3 (the gig table) and 5 (plan) of the brief, then the Telegram draft
 in full (it is the shortest and the one most likely to be posted as is), and
 the paths to the full brief and to all drafts.
 
@@ -205,8 +222,12 @@ evidence favours), and the single best next action across all of them.
 
 ## Mistakes this skill is built against
 
-- **Retelling instead of judging.** "The speaker then talks about…" is the
-  sentence this skill exists to delete.
+- **Describing the video instead of the thing.** "The speaker then talks
+  about…", "in the video they show…" — the sentences this skill exists to
+  delete. The user wants the know-how and the opportunity, not a review.
+- **Guessing the gig market.** "There is demand for landing pages" is not a
+  finding; 4513 offers at a median of 8000 ₽ with top sellers at 1000+
+  reviews is.
 - **Trusting the date of the video as the date of the world.** A tactic from
   2023 presented as current advice is the most common way a summary misleads.
 - **Generic advice.** "Consider building an audience" applies to everyone and
