@@ -6,6 +6,8 @@ For every video it writes a private brief:
 
 - **Verdict** — what the video gives you, signal score, whether to watch it yourself.
 - **What this opens up** — the new capabilities, one per bullet.
+- **Between the lines** — tools, numbers, prompts, mistakes and the speaker's real business, said in
+  passing and missed by a summary.
 - **Instruction** — step by step, with exact commands and prompts, every fact checked against today,
   plus the pitfalls the video skips. You can act without watching.
 - **Money** — freelance gigs this makes sellable, with real market numbers from Russian-speaking and
@@ -14,9 +16,19 @@ For every video it writes a private brief:
   Fiverr and Upwork via web search; and a mandatory demand check before any niche is called "free"
   (`scripts/demand-check.mjs`: Google search volumes with year-over-year trend, the angle measured
   against the buyer's free alternative); effective hourly rate, and ready gig cards with packages and a kill criterion.
+- **Education products** — a ladder from free lead magnet to workshop, niche course and cohort, with
+  prices checked against comparable offers and the own case each one needs first
+  (`references/education-products.md`).
 - **Bigger** — product or business ideas, each run through the six [idea-gates](../README.md) gates.
+- **Scorecard** — every opportunity scored 1–5 on money, speed, measured demand, competition, fit, risk
+  and shelf life; demand above 2 only with a measurement. The plan is built around the winner.
 - **Plan** — today (≤ 1 hour), this week, 30 days with a kill criterion.
-- **Why it works and how long it lasts** — the lever, and the shelf life of the gig window.
+- **Trend** — the stage on the curve (early / rising / peak hype / mainstream / fading) from search and
+  supply data, and how long each window stays open.
+
+Before the brief is handed over, an **independent reviewer** (a separate agent that did not write it)
+checks it against the transcript: unsourced claims, inflated scores, seller reviews read as demand,
+things the brief missed, and leaks into the public posts.
 
 Briefs are saved to `research/videos/` with an `INDEX.md`, so they build up into a library that later
 briefs check new claims against.

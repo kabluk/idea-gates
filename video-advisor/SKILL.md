@@ -1,6 +1,6 @@
 ---
 name: video-advisor
-description: Turn a YouTube video into action instead of a retelling — a private brief for the user (what it opens up, a step-by-step instruction checked against today, freelance gigs it makes sellable with real Kwork/Fiverr market data, bigger ideas through the idea-gates gates, a plan with a kill criterion) and first-person how-to post drafts the user approves and publishes under their own name (Telegram, X/Threads, LinkedIn, vc.ru/Хабр, Russian and English). Use whenever the user sends a YouTube link (youtube.com, youtu.be, shorts, live) or a pasted transcript and wants a summary, takeaways, "what can I do with this", "is this worth watching", "разбери видео", "что из этого применить", "сделай выжимку", or asks to compare a new video with ones already analysed, or wants a post / thread / article made from a video.
+description: Turn a YouTube video into action instead of a retelling — a private brief that looks at it from several sides (a step-by-step instruction checked against today, what was said between the lines, freelance gigs with real Kwork/Freelancer/Fiverr market data, education products from workshop to course, bigger ideas through the idea-gates gates, the trend stage), scores every opportunity in one table, plans around the winner and is checked by an independent reviewer and first-person how-to post drafts the user approves and publishes under their own name (Telegram, X/Threads, LinkedIn, vc.ru/Хабр, Russian and English). Use whenever the user sends a YouTube link (youtube.com, youtu.be, shorts, live) or a pasted transcript and wants a summary, takeaways, "what can I do with this", "is this worth watching", "разбери видео", "что из этого применить", "сделай выжимку", or asks to compare a new video with ones already analysed, or wants a post / thread / article made from a video.
 ---
 
 # video-advisor — a video in, a decision out
@@ -19,9 +19,12 @@ believe, check or do.** A paragraph that only restates the speaker is cut.
 
 Every video produces two things with different readers:
 
-- **The brief** — private, for the user only: the instruction, the gigs and
-  their market numbers, ideas scored against the founder profile, the plan.
-  Never published.
+- **The brief** — private, for the user only. It looks at the video from
+  several sides — the practitioner (instruction), what was said between the
+  lines, quick money (gigs), education products, a bigger product, the trend
+  — then scores every opportunity in one table and plans around the winner.
+  An independent reviewer checks it before it is handed over. Never
+  published.
 - **Public post drafts** — the user's own first-person how-to posts, published
   under their name after they approve them. They share the know-how (the
   instruction, the pitfalls, a take), never the money plan.
@@ -95,6 +98,23 @@ Structure:
 3–5 bullets, each a concrete capability: "now X can be done in Y instead of Z".
 For a video about new features or a product update: one bullet per feature
 that matters, with what it replaces. Skip features that change nothing.
+
+### 1b. Between the lines
+People say more than the main thread of a video. Mine the transcript (and the
+description, chapters and links) for what is said in passing — it is often
+worth more than the headline:
+- **Tools and services mentioned by name**, with what each was used for and a
+  link (checked to exist).
+- **Exact numbers** — time spent, costs, counts, results — with timestamps.
+- **Prompts, commands, settings quoted verbatim.**
+- **The speaker's mistakes and lessons** ("I had to run it twice", "the AI
+  adds too much copy").
+- **Opinions and predictions** worth tracking, marked as opinion.
+- **The speaker's real business** — what the video is a funnel for. An
+  open-source project, a free tool or a course is often marketing for
+  something else; that model can be an opportunity in itself.
+The transcript has no picture: if a key moment is visual ("as you can see"),
+say so and give the timestamp instead of guessing what was on screen.
 
 ### 2. Instruction — how to do it
 A playbook the user can follow without watching:
@@ -185,6 +205,16 @@ transparent about AI use; do not sell AI output as hand-made).
 
 If the video gives nothing sellable, say so in one line and skip the section.
 
+### 3b. Education products
+What this know-how could become as a workshop, a niche course or a big
+programme. Follow `references/education-products.md`: a ladder (free lead
+magnet → workshop → niche course → cohort), 5–10 named ideas with audience,
+result, programme, price checked against comparable offers, and **the own
+case the user needs first** — nobody buys a course from someone who only
+watched the video. Courses sell through an audience, not search, so tie each
+idea to the posts that would build that audience. Skip the section if the
+topic is not teachable (a one-off news item).
+
 ### 4. Bigger: product or business
 Only if the video opens something beyond gigs. 1–2 ideas for **this founder**,
 each through the six idea-gates gates, one line per gate, stop at the first
@@ -201,19 +231,41 @@ failure:
 
 If an idea survives and the idea-gates skill is installed, offer the full pass.
 
+### 4b. Scorecard — what to do first
+Put every opportunity from sections 3, 3b and 4 (and "build an audience with
+posts", if the topic suits) into one table and score each 1–5:
+
+| Opportunity | Money potential | Speed to first money | Demand evidence | Competition (5 = little) | Fit with the user | Risk (5 = low) | Shelf life | Total |
+|---|---|---|---|---|---|---|---|---|
+
+Rules: **demand evidence above 2 requires a measurement** from this brief
+(demand-check, marketplace jobs, comparable sales) — an unmeasured "people
+want this" scores 1 or 2. "Fit" uses `docs/FOUNDER.md`; without it, score 3
+and say so. Name the winner and the runner-up in one line each, and say what
+would change the ranking (usually: the first two weeks of real orders).
+
 ### 5. Plan
+Built around the scorecard winner.
 - **Today, ≤ 1 hour** — the one action, exact command or page to open.
 - **This week** — 2–3 steps with what "done" looks like (usually: run the
   instruction once, make portfolio pieces, publish the gig).
 - **30 days** — the experiment, metric, budget in money and hours, and the
   **kill criterion**.
 
-### 6. Why it works and how long it lasts
-Two or three short paragraphs, the strategist and the philosopher together:
-the lever underneath (a cost that fell, a new tool, a platform shift), who
-will copy it and how fast — **the shelf life of the gig opportunity** in
-particular, since a trick shown to 50K viewers fills the gig market within
-weeks — and one question worth sitting with.
+### 6. Trend: where this is on the curve
+Use numbers, not adjectives:
+- **Search trend** — demand-check on the topic's main terms (year over year);
+- **Supply trend** — new gigs, clones, competitors appearing (marketplace
+  counts, GitHub stars or forks of the tool and its alternatives, with dates);
+- **Stage** — one of: *early* (practitioners only, little search, few
+  offers), *rising* (search growing fast, clones appearing), *peak hype*
+  (search at its highest, marketplaces flooding), *mainstream* (flat search,
+  crowded, prices falling), *fading*. Say what evidence put it there.
+- **Window** — how long each opportunity in the scorecard stays open at this
+  stage, and the signal that it closed.
+
+Then two short paragraphs: the lever underneath (why it works at all), and
+one question worth sitting with.
 
 ### 7. Watch out
 The source's incentives (sponsors, paid community, agency upsell — check the
@@ -237,6 +289,33 @@ a header if missing):
 Keep the raw transcript in `research/videos/raw/` — it lets a later question
 ("what did that guy say about pricing?") be answered without refetching.
 
+## Step 4b — independent review
+
+The brief is checked by someone who did not write it — the same principle
+that makes agents reliable: do not accept "done" without proof. If the Agent
+tool is available, spawn a general-purpose subagent with this prompt (fill in
+the paths):
+
+```
+You are the independent reviewer of a video brief. Read the transcript
+<raw transcript path> and the brief <brief path>. Report, as a list:
+1. Claims in the brief that are not in the transcript and have no cited source.
+2. Numbers without a source or date.
+3. Any niche called free/underserved without a demand measurement.
+4. Scorecard scores that contradict the evidence in the brief (e.g. demand
+   evidence > 2 with nothing measured).
+5. Marketplace claims that confuse seller-level reviews with gig-level demand.
+6. Valuable things said in the transcript that the brief missed.
+7. Anything in the public post drafts that leaks the private sections or
+   claims a first-person result the user did not get.
+Be specific: quote the line, say what is wrong, propose the fix. No praise.
+```
+
+Fix what it finds, then add a short **"Review"** note at the end of the
+brief: what was checked, what was changed, what remains unverified. Without
+the Agent tool, run the same seven checks yourself, one by one, and say in the
+note that the review was a self-review.
+
 ## Step 5 — public post drafts
 
 Read `references/public-formats.md` and follow it. The posts are written by
@@ -254,7 +333,7 @@ approves and posts. When the user approves, change the status to
 
 ## Reply in chat
 
-Show sections 0, 3 (the gig table) and 5 (plan) of the brief, then the Telegram draft
+Show sections 0, 4b (the scorecard) and 5 (plan) of the brief, then the Telegram draft
 in full (it is the shortest and the one most likely to be posted as is), and
 the paths to the full brief and to all drafts.
 
