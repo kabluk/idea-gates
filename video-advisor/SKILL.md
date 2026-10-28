@@ -137,8 +137,8 @@ different numbers; get both:
 - **Kwork** (RU, supply): `node video-advisor/scripts/kwork-scan.mjs "<query>" ...`
   — offers (competition), p25/median/p75 price, reviews of the top sellers
   and bookmarks of their gigs. **Seller reviews are the seller's whole
-  history, not this gig's** — a seller with 7,513 reviews over 19 gigs proves
-  the seller, not the niche (his OpenClaw gig had 4 bookmarks). Say "seller
+  history, not this gig's** — a seller with thousands of reviews over a dozen-plus gigs proves
+  the seller, not the niche (one such seller's gig in a new niche had 4 bookmarks). Say "seller
   with N reviews", never "the gig has N reviews"; the gig's bookmarks are the
   only public gig-level signal. Scan 4–6 queries: the broad service and the narrow ones
   closest to what the video enables.
