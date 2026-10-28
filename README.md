@@ -60,6 +60,13 @@ The optional measurement scripts in `scripts/` need Node.js 18+ and DataForSEO c
 
 Then in Claude Code: *"Run idea-gates on: an AI bookkeeping assistant for Etsy sellers."*
 
+## Companion skill: video-advisor
+
+[`video-advisor/`](video-advisor/README.md) turns a YouTube link into an advisor's brief: the claims
+worth keeping and how well they are supported, whether they still hold today, the mechanism behind
+them, business ideas run through the six gates against your founder profile, an action plan with a
+kill criterion, and the assumption underneath. Install it alongside idea-gates; see its README.
+
 ## How I built this with AI agents
 
 The skill was written and refined with Claude Code, one post-mortem at a time: each gate, trap and
