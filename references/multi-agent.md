@@ -9,7 +9,7 @@ step finish until someone who did not do it has checked it.
 Three rules carry the whole design:
 
 1. **Files are the shared state.** Agents talk only through
-   `research/ideas/<slug>/`. Any step can be re-run, audited or resumed by a
+   `brain/ideas/<slug>/`. Any step can be re-run, audited or resumed by a
    fresh agent, and the founder can read exactly what each one saw.
 2. **Every step is audited by an agent that did not do it.** Work → audit →
    fix, at most two fix rounds, then escalate to the founder. Numbers are
@@ -20,20 +20,27 @@ Three rules carry the whole design:
 
 ## The team
 
-Role definitions live in `agents/`. Each file is a complete system prompt
-with Claude Code subagent frontmatter, so it works three ways: copied to
-`.claude/agents/` as a named subagent, pasted as the prompt of a
+Each role is a folder in `agents/<role>/`: `ROLE.md` is a complete system
+prompt with Claude Code subagent frontmatter, and a role may carry its
+method (`playbook.md`) and its exam (`evals/`). `ROLE.md` works three ways:
+copied to `.claude/agents/` as a named subagent, passed as the prompt of a
 general-purpose subagent, or used as a bot's instructions on another agent
-runtime (see Rakazo below).
+runtime (see Rakazo below). What a role learns in a project lives in that
+project's brain, not here — see `references/memory.md`.
+
+Paths in the role files: `SKILL.md`, `agents/`, `library/`, `references/`
+and `scripts/` are relative to the skill directory, `brain/` and `docs/` to
+the project root. The orchestrator tells each agent the skill directory.
 
 | Role | File | Writes | Paid calls |
 |---|---|---|---|
-| Scout | `agents/scout.md` | `card.md` per idea | no |
-| Gatekeeper | `agents/gatekeeper.md` | `gates.md` | no |
-| Auditor | `agents/auditor.md` | `audit-*.md` | no |
-| Ocean analyst | `agents/ocean-analyst.md` | `ocean.md` + raw JSON | DataForSEO |
-| Red-teamer | `agents/red-teamer.md` | `redteam-prompt.md`, `redteam.md` | founder runs external LLMs |
-| Judge | `agents/judge.md` | `verdict.md`, `INDEX.md` line | no |
+| Scout | `agents/scout/` (+ playbook, exam) | `card.md` with p_pass, batch file, retro proposals | no |
+| Gatekeeper | `agents/gatekeeper/` | `gates.md` | no |
+| Auditor | `agents/auditor/` | `audit-*.md` | no |
+| Ocean analyst | `agents/ocean-analyst/` | `ocean.md` + raw JSON, world facts | DataForSEO |
+| Red-teamer | `agents/red-teamer/` | `redteam-prompt.md`, `redteam.md` | founder runs external LLMs |
+| Judge | `agents/judge/` | `verdict.md`, `INDEX.md` line, scout exam case | no |
+| Librarian | `agents/librarian/` | the brain's long-term memory, `log.md` | no |
 
 The orchestrator is the agent the founder talks to. It runs no phase itself:
 it starts agents, reads their front-matter, decides the next step and keeps
@@ -42,7 +49,7 @@ it starts agents, reads their front-matter, decides the next step and keeps
 ## Files per idea
 
 ```
-research/ideas/
+brain/ideas/
   INDEX.md                 one line per idea ever judged (judge writes it)
   <slug>/
     STATE.md               orchestrator's log: phase, round, last result, spend
@@ -96,6 +103,9 @@ Transitions:
   `back_to_gates: true` → re-run the gates with the red-team file as the
   audit, round counter reset.
 - **verdict** accepted → done; report to the founder.
+- **batch decided** (every idea of a batch has a verdict or is waiting on
+  the founder) → the learning loop from `references/memory.md`:
+  `track-record.mjs`, scout `retro`, librarian `review`.
 
 Ideas are independent: run the gatekeeper for a whole batch in parallel, one
 agent per idea, then the auditors in parallel. Only the ocean phase is
@@ -124,7 +134,11 @@ serialised behind the budget.
 Install the role files once, from the project root:
 
 ```sh
-mkdir -p .claude/agents && cp .claude/skills/idea-gates/agents/*.md .claude/agents/
+mkdir -p .claude/agents
+for d in .claude/skills/idea-gates/agents/*/; do
+  cp "$d/ROLE.md" ".claude/agents/idea-gates-$(basename "$d").md"
+done
+cp -r .claude/skills/idea-gates/templates/brain brain   # first time only
 ```
 
 Then: *"Run idea-gates in autonomous mode: find a niche, two batches."* or
@@ -135,13 +149,14 @@ general-purpose subagent — same result, one step more.
 ### Claude Code, headless (scheduled or CI)
 
 ```sh
-claude -p "Run idea-gates in autonomous mode on the ideas in research/inbox.md. \
+claude -p "Run idea-gates in autonomous mode on the seeds in brain/ideas/seeds.md. \
+Skill directory: .claude/skills/idea-gates. \
 Stop at founder checkpoints and list them at the end." \
   --permission-mode acceptEdits --allowedTools "Bash(node:*)" "WebSearch" "WebFetch"
 ```
 
 Because all state is in files, the next run (by hand, cron or a CI job)
-resumes from `STATE.md` instead of starting over. Commit `research/ideas/`
+resumes from `STATE.md` instead of starting over. Commit `brain/`
 between runs if the machine is ephemeral.
 
 ### Rakazo
@@ -159,15 +174,17 @@ around the clock instead of in one Claude Code session.
 - **Bots.** One bot per role, instructions = the body of the role file, and
   a one-line *How other bots see it* description taken from the file's
   `description`. Put them in one group chat with the orchestrator as the
-  first bot. Peer bots keep their own memory, which suits the auditor: it
-  remembers which mistakes a gatekeeper made before.
-- **Shared state.** The `research/ideas/` folder on the shared Team Computer
+  first bot. Keep Rakazo's own bot memory for conversation context only;
+  what a role learns goes to `brain/agents/<role>/` through the librarian,
+  so it stays reviewable, versioned and portable (`references/memory.md`).
+- **Shared state.** The `brain/` folder (a git clone) on the shared Team Computer
   plays the same role as on disk here. Give the auditor a separate bot, not a
   subagent of the gatekeeper, so its context is really independent.
 - **Routines.** A weekly routine on the orchestrator bot ("run one
   find-a-niche batch, stop at founder checkpoints"), and a *when something
-  changes* routine watching `research/ideas/*/answers/` to resume red-team
-  runs when the founder drops answers in.
+  changes* routine watching `brain/ideas/*/answers/` to resume red-team
+  runs when the founder drops answers in. The librarian bot gets the weekly
+  garden routine and an inbox watch (see `references/memory.md`).
 
 What does not carry over: Rakazo is a full stack (Postgres, Docker
 computers, model credentials) and is in beta — worth it if the team should

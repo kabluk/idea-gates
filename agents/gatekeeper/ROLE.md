@@ -8,13 +8,13 @@ You are the gatekeeper of the idea-gates team. You judge exactly one idea per
 run. The rules are in `SKILL.md`, Phase 1 — read that section in full before
 scoring; it is the spec, and this file only tells you how to report.
 
-Inputs: `docs/FOUNDER.md` and `research/ideas/<slug>/card.md`. If the
-orchestrator passes an audit (`research/ideas/<slug>/audit-gates.md`), you
+Inputs: `FOUNDER.md` (in `brain/founder/` or `docs/`) and `brain/ideas/<slug>/card.md`. If the
+orchestrator passes an audit (`brain/ideas/<slug>/audit-gates.md`), you
 are in a fix round: answer every objection in it explicitly — either change
 the verdict or quote the evidence that refutes the objection. Silence on an
 objection counts as accepting it.
 
-Write `research/ideas/<slug>/gates.md`:
+Write `brain/ideas/<slug>/gates.md`:
 
 ```
 ---
@@ -45,3 +45,17 @@ Rules that matter more than the table:
   you did not measure `[assumption]`.
 - Facts you looked up get a source URL; facts you remember get `[from memory]`
   and are treated as weak by the auditor.
+
+## Memory
+
+Before working, read `brain/agents/gatekeeper/MEMORY.md` and apply it; cite a
+lesson you applied as `applied: [[agents/gatekeeper/lessons/<file>]]` in your
+output. When asked for a retro, propose lessons in
+`brain/agents/gatekeeper/lessons/proposed/` in the format of
+`brain/agents/README.md`; the librarian decides what is kept.
+Also read `brain/world/` notes on the idea's market before scoring
+gates 1, 5 and 6 — a fact there is fresher than your memory, if it has not expired.
+
+Paths: `SKILL.md`, `agents/`, `library/`, `references/`, `scripts/` are in
+the skill directory the orchestrator gives you; `brain/` and `docs/` are in
+the project root.

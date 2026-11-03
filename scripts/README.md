@@ -1,8 +1,10 @@
 # scripts
 
-Measurement helpers for Phase 2 (the ocean) and two of the idea sources. Plain
-Node.js (18+), no dependencies; HTTP goes through `curl`, so the scripts respect
-`HTTPS_PROXY`. They are optional — the gates in Phase 1 need no tools at all.
+Measurement helpers for Phase 2 (the ocean) and two of the idea sources, plus
+three offline checkers used by the agent team (`verify-sources`,
+`track-record`, `brain-lint`). Plain Node.js (18+), no dependencies; HTTP goes
+through `curl`, so the scripts respect `HTTPS_PROXY`. They are optional — the
+gates in Phase 1 need no tools at all.
 
 ## Credentials
 
@@ -61,7 +63,27 @@ that cite nothing. Used by the auditor in autonomous mode
 (`references/multi-agent.md`); exits non-zero when anything fails.
 
 ```sh
-node scripts/verify-sources.mjs research/ideas/gpsr/ocean.md --strict
+node scripts/verify-sources.mjs brain/ideas/gpsr/ocean.md --strict
+```
+
+**`track-record.mjs`** — no API calls. Scores the scout's card-time
+predictions (`p_pass`, `weakest_gate`) against the gate results: Brier score
+against a baseline, calibration buckets, accuracy by source, which gate kills
+the cards, biggest misses. Also runs the scout's exam with `--predictions`.
+
+```sh
+node scripts/track-record.mjs --ideas brain/ideas --out brain/agents/scout/track-record.md
+node scripts/track-record.mjs --ideas agents/scout/evals/cases --predictions predictions.json
+```
+
+**`brain-lint.mjs`** — no API calls. Hygiene of the brain
+(`references/memory.md`): expired or unsourced facts, lessons without
+evidence links or unused for months, oversized `MEMORY.md`, broken
+`[[links]]`, and how many inbox items and lesson proposals are waiting. The
+librarian runs it weekly.
+
+```sh
+node scripts/brain-lint.mjs --brain brain
 ```
 
 The three DataForSEO scripts write JSON reports under `research/` by default (override with

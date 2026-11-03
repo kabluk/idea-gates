@@ -7,8 +7,8 @@
 // Convention: every measured number in a report carries its source right
 // after it, as a file plus a path inside that JSON file:
 //
-//   Tool intent is 4,400/mo [src: research/ideas/gpsr/scan-de.json#buckets.tool.total_volume]
-//   The leader ranks #3 [src: research/ideas/gpsr/scan-de.json#serps[0].items[2].pos]
+//   Tool intent is 4,400/mo [src: brain/ideas/gpsr/scan-de.json#buckets.tool.total_volume]
+//   The leader ranks #3 [src: brain/ideas/gpsr/scan-de.json#serps[0].items[2].pos]
 //
 // For every citation the script checks that the file exists, the path
 // resolves, and the number written just before the citation matches the value
@@ -20,8 +20,8 @@
 // candidates for "a number someone remembered instead of measured".
 //
 // Usage:
-//   node scripts/verify-sources.mjs research/ideas/gpsr/ocean.md
-//   node scripts/verify-sources.mjs research/ideas/*/ocean.md --strict --tolerance 0
+//   node scripts/verify-sources.mjs brain/ideas/gpsr/ocean.md
+//   node scripts/verify-sources.mjs brain/ideas/*/ocean.md --strict --tolerance 0
 //
 // Exit code: 0 if every citation checks out (and, with --strict, no uncited
 // numbers); 1 otherwise. Output is JSON on stdout so an agent can act on it.

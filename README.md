@@ -56,8 +56,9 @@ Copy `templates/FOUNDER.example.md` to `docs/FOUNDER.md` and fill it in — or l
 the questions on the first run and write the file for you.
 
 For autonomous mode, also install the role agents:
-`mkdir -p .claude/agents && cp .claude/skills/idea-gates/agents/*.md .claude/agents/` (optional — without
-them the skill passes the role files to general-purpose subagents).
+copy each `agents/<role>/ROLE.md` to `.claude/agents/` and the brain template into the project — the
+commands are in [`references/multi-agent.md`](references/multi-agent.md#claude-code-interactive)
+(the agents are optional: without them the skill passes the role files to general-purpose subagents).
 
 The optional measurement scripts in `scripts/` need Node.js 18+ and DataForSEO credentials in
 `DATAFORSEO_LOGIN` / `DATAFORSEO_PASSWORD`; see `scripts/README.md`.
@@ -83,7 +84,17 @@ flowchart LR
 ```
 
 Role prompts are in [`agents/`](agents/), the protocol in
-[`references/multi-agent.md`](references/multi-agent.md). They run as Claude Code subagents
+[`references/multi-agent.md`](references/multi-agent.md).
+
+**The team learns.** Agents start every run with an empty context, so their memory is a folder:
+`brain/` in your project (copied from [`templates/brain/`](templates/brain/), open it as an
+Obsidian vault). You drop anything into `brain/inbox/`; a librarian agent turns it into library
+notes, dated facts that expire and idea seeds. Roles propose lessons from decided ideas, and the
+librarian keeps only those backed by cases. The scout predicts each card's chance of passing the
+gates, `scripts/track-record.mjs` scores those predictions, and a change to a role's method is
+kept only if its exam does not get worse. Each role's method cites its sources in
+[`library/`](library/) (Graham, Christensen, Fitzpatrick, Walling, Kahl, Kim & Mauborgne,
+Tetlock). Details: [`references/memory.md`](references/memory.md). They run as Claude Code subagents
 (interactive or headless with `claude -p`), and the same files work as bot instructions on a
 self-hosted runtime such as [Rakazo](https://github.com/elie222/rakazo) for a team that runs
 unattended.

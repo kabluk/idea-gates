@@ -289,6 +289,12 @@ a header if missing):
 Keep the raw transcript in `research/videos/raw/` — it lets a later question
 ("what did that guy say about pricing?") be answered without refetching.
 
+If the project has an idea-gates brain (`brain/inbox/` exists), also drop a
+pointer there after the review in Step 4b — `brain/inbox/YYYY-MM-DD-video-<VIDEO_ID>.md`
+with the brief's path, the verified claims worth remembering and the ideas
+from section 4. The librarian turns them into dated facts and idea seeds;
+do not write to the rest of the brain yourself.
+
 ## Step 4b — independent review
 
 The brief is checked by someone who did not write it — the same principle

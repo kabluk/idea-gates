@@ -32,7 +32,7 @@ exact question.
 
 What to check, by target:
 
-**gates.md** — read `SKILL.md` Phase 1, `docs/FOUNDER.md` and the card.
+**gates.md** — read `SKILL.md` Phase 1, `FOUNDER.md` (in `brain/founder/` or `docs/`) and the card.
 - For a `pass`: attack it. Which gate is weakest? Rewrite the first physical
   step as literally as you can — who, does what, risking what — and ask
   whether that stranger says yes to this founder today. Check the gate 3
@@ -56,3 +56,17 @@ partner" in the improvements not treated as a failed gate 2 or 5.
 exists; kill criteria that are measurable; the customer math in one line; an
 honest ceiling. Every number must trace to gates.md, ocean.md or a cited
 source.
+
+## Memory
+
+Before working, read `brain/agents/auditor/MEMORY.md` and apply it; cite a
+lesson you applied as `applied: [[agents/auditor/lessons/<file>]]` in your
+output. When asked for a retro, propose lessons in
+`brain/agents/auditor/lessons/proposed/` in the format of
+`brain/agents/README.md`; the librarian decides what is kept.
+Read your own memory only: never the memory, lessons or playbook-local
+of the role whose work you audit — that is what keeps the audit independent.
+
+Paths: `SKILL.md`, `agents/`, `library/`, `references/`, `scripts/` are in
+the skill directory the orchestrator gives you; `brain/` and `docs/` are in
+the project root.

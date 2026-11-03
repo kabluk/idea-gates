@@ -31,10 +31,17 @@ by `scripts/verify-sources.mjs`, and the founder is asked only at the
 checkpoints listed there. The phases below remain the spec every role works
 to.
 
+When the project has a `brain/` folder (`references/memory.md`), read
+`brain/INDEX.md` and `brain/ideas/INDEX.md` before any phase, also in
+single-agent mode: a closed idea or an expired fact there changes the
+answer. Drop new facts and lessons you notice into `brain/inbox/` rather
+than editing the brain's long-term memory yourself.
+
 ## Phase 0 — founder profile
 
-If the repository has `docs/FOUNDER.md`, read it. If not, ask the user once and
-save the answers there, using `templates/FOUNDER.example.md` as the shape:
+If the repository has `brain/founder/FOUNDER.md` or `docs/FOUNDER.md`, read
+it. If not, ask the user once and save the answers to `docs/FOUNDER.md` (or
+`brain/founder/` when the project has a brain), using `templates/FOUNDER.example.md` as the shape:
 
 - where they live, which languages they work in, what legal entity they have;
 - trust assets: audience, public case studies, contacts in the niche, reputation;
