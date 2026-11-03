@@ -53,6 +53,17 @@ node scripts/seo-data.mjs volume --keywords keywords.json --location UK
 node scripts/seo-data.mjs serp --query "gpsr responsible person" --location DE
 ```
 
-All three write JSON reports under `research/` by default (override with
+**`verify-sources.mjs`** — no API calls, no credentials. Checks a markdown
+report against its raw data: every number followed by
+`[src: <file.json>#<path>]` must match the value at that path (5% tolerance by
+default). `--strict` also lists numbers with units such as `/mo`, `%` or `$`
+that cite nothing. Used by the auditor in autonomous mode
+(`references/multi-agent.md`); exits non-zero when anything fails.
+
+```sh
+node scripts/verify-sources.mjs research/ideas/gpsr/ocean.md --strict
+```
+
+The three DataForSEO scripts write JSON reports under `research/` by default (override with
 `--out`). Each call costs real money on your DataForSEO account; check
 `seo-data.mjs balance` first and keep within the budget in your `FOUNDER.md`.

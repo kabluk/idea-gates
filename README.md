@@ -55,10 +55,38 @@ git clone https://github.com/kabluk/idea-gates .claude/skills/idea-gates
 Copy `templates/FOUNDER.example.md` to `docs/FOUNDER.md` and fill it in — or let the skill ask you
 the questions on the first run and write the file for you.
 
+For autonomous mode, also install the role agents:
+`mkdir -p .claude/agents && cp .claude/skills/idea-gates/agents/*.md .claude/agents/` (optional — without
+them the skill passes the role files to general-purpose subagents).
+
 The optional measurement scripts in `scripts/` need Node.js 18+ and DataForSEO credentials in
 `DATAFORSEO_LOGIN` / `DATAFORSEO_PASSWORD`; see `scripts/README.md`.
 
 Then in Claude Code: *"Run idea-gates on: an AI bookkeeping assistant for Etsy sellers."*
+
+## Autonomous mode: a team of agents
+
+Ask for *"autonomous mode"* and the skill stops working alone. A scout writes candidates, a
+gatekeeper scores each one in parallel, an independent auditor tries to break every verdict, the
+author fixes what the auditor finds, an ocean analyst measures survivors within your budget, a
+red-teamer prepares the external-LLM pass, and a judge writes the verdict. Nothing is accepted
+until an agent that did not do the work has checked it, and every measured number is checked
+against its raw JSON by `scripts/verify-sources.mjs`. You are asked only when money is about to be
+spent, when the auditor needs your judgement, and for the final verdicts.
+
+```mermaid
+flowchart LR
+    W["Role agent<br/>does the phase"] --> A["Auditor<br/>fresh context"]
+    A -- "fix (max 2 rounds)" --> W
+    A -- escalate --> F["Founder"]
+    A -- accept --> N["Next phase"]
+```
+
+Role prompts are in [`agents/`](agents/), the protocol in
+[`references/multi-agent.md`](references/multi-agent.md). They run as Claude Code subagents
+(interactive or headless with `claude -p`), and the same files work as bot instructions on a
+self-hosted runtime such as [Rakazo](https://github.com/elie222/rakazo) for a team that runs
+unattended.
 
 ## Companion skill: video-advisor
 

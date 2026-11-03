@@ -1,6 +1,6 @@
 ---
 name: idea-gates
-description: Check a business idea before falling in love with it — first six feasibility gates scored against this specific founder, then market analysis, then a red-team pass through external LLMs, then a build / defer / closed verdict. Use whenever someone brings a new project, service or niche idea, asks "is this idea worth building", "should I build X", "validate my idea", "find a niche" or "find a blue ocean", wants to judge whether an idea is viable, or starts a project that has not been through the gates. Also use to re-check a live project when conditions change (new market, new pricing model, new customer segment).
+description: Check a business idea before falling in love with it — first six feasibility gates scored against this specific founder, then market analysis, then a red-team pass through external LLMs, then a build / defer / closed verdict. Use whenever someone brings a new project, service or niche idea, asks "is this idea worth building", "should I build X", "validate my idea", "find a niche" or "find a blue ocean", wants to judge whether an idea is viable, or starts a project that has not been through the gates. Also use to re-check a live project when conditions change (new market, new pricing model, new customer segment), and when the user wants the pipeline run autonomously by a team of agents ("autonomous mode", "run it with agents", "запусти агентами").
 ---
 
 # idea-gates — gates before the ocean
@@ -19,6 +19,17 @@ the market.
 Hence the rule: **market analysis of an infeasible idea is wasted work.** Gates
 first (minutes, free), then the ocean (hours, paid APIs), then red-team (days,
 external LLMs). Never the other way round.
+
+## Autonomous mode — a team instead of one agent
+
+When the user asks for autonomous or multi-agent mode, or hands over more
+than three ideas at once, do not run the phases yourself. Become the
+orchestrator described in `references/multi-agent.md`: role agents from
+`agents/` do the phases, an independent auditor checks every step, the
+author fixes what the auditor finds (at most two rounds), numbers are checked
+by `scripts/verify-sources.mjs`, and the founder is asked only at the
+checkpoints listed there. The phases below remain the spec every role works
+to.
 
 ## Phase 0 — founder profile
 
