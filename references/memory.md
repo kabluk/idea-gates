@@ -110,6 +110,36 @@ On Rakazo, the same prompt is a weekly routine on the librarian bot, and a
 *when something changes* routine on `brain/inbox/` runs `inbox` mode as
 soon as something is dropped in.
 
+## A project that already has a memory
+
+Many projects already keep research, a founder profile and lessons
+somewhere. Do not copy `templates/brain/` next to them: a second memory
+drifts from the first. Put a `.idea-gates.json` in the project root instead
+(shape: `templates/idea-gates.example.json`) and the team uses the
+project's own places:
+
+- **`paths`** maps the logical paths the role files use (`brain/ideas`,
+  `brain/agents`, `brain/inbox`, …) to the project's folders; the longest
+  matching key wins, so `brain/ideas/INDEX.md` can live elsewhere than the
+  idea folders. Every agent resolves a `brain/...` path through this map
+  before reading or writing.
+- **`idea_folder`** names a new idea's folder (e.g. `YYYY-MM-<slug>` for a
+  workshop that dates its studies). Cards, gates and audits go inside it.
+- **`report`** makes the judge also write the verdict in the project's own
+  report format (`file`, `template`, `language`), so the project's other
+  tools and people keep reading the file they always read.
+- **`lessons_ledger`** is the project's cross-project lesson log. When the
+  librarian accepts a lesson that would help outside idea-gates, it adds one
+  line there in that file's own format, pointing to the lesson file.
+- **`skill`** is where the skill is installed; **`skill_repo`** is cloned
+  (`git clone --depth 1 <skill_repo> /tmp/idea-gates`) when it is not, so a
+  project can use the team without vendoring a copy.
+
+[[links]] are then written relative to the project root, which is also the
+Obsidian vault. `scripts/brain-lint.mjs --config .idea-gates.json` checks
+the mapped folders only, and `scripts/ideas-index.mjs` builds the idea index
+from the project's existing reports as well as from new verdicts.
+
 ## When to add search beyond grep
 
 Not before the brain has a few thousand notes. Until then, `INDEX.md`'s

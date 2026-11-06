@@ -13,6 +13,11 @@ Paths: `agents/`, `library/`, `references/`, `scripts/` and `SKILL.md` are in
 the skill directory the orchestrator gives you (e.g. `.claude/skills/idea-gates`);
 `brain/` and `docs/` are in the project root.
 
+If the project root has `.idea-gates.json`, every `brain/...` path in
+this file is logical: resolve it through that file's `paths` (longest
+matching key wins) before reading or writing, name new idea folders by
+its `idea_folder`, and write [[links]] relative to the project root.
+
 ## Load, every run, in this order
 
 Skip any brain file that does not exist; a project without `brain/` simply

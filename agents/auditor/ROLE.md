@@ -70,3 +70,8 @@ of the role whose work you audit — that is what keeps the audit independent.
 Paths: `SKILL.md`, `agents/`, `library/`, `references/`, `scripts/` are in
 the skill directory the orchestrator gives you; `brain/` and `docs/` are in
 the project root.
+
+If the project root has `.idea-gates.json`, every `brain/...` path in
+this file is logical: resolve it through that file's `paths` (longest
+matching key wins) before reading or writing, name new idea folders by
+its `idea_folder`, and write [[links]] relative to the project root.

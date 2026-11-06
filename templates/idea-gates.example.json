@@ -1,0 +1,25 @@
+{
+  "_comment": "Copy to .idea-gates.json in the project root when the project already keeps research, a founder profile and lessons somewhere and the team should use those places instead of a separate brain/ folder. Keys under paths are the logical brain paths the role files use; the longest matching key wins. Paths are relative to the project root. This example maps a research workshop that keeps one folder per study with a REPORT.md.",
+  "skill": ".claude/skills/idea-gates",
+  "skill_repo": "https://github.com/kabluk/idea-gates",
+  "paths": {
+    "brain/INDEX.md": "docs/agents/INDEX.md",
+    "brain/founder": "docs",
+    "brain/ideas": "research",
+    "brain/ideas/INDEX.md": "research/IDEAS.md",
+    "brain/ideas/seeds.md": "docs/agents/scout/seeds.md",
+    "brain/ideas/batches": "docs/agents/scout/batches",
+    "brain/agents": "docs/agents",
+    "brain/inbox": "inbox",
+    "brain/world": "docs/world",
+    "brain/library": "docs/library",
+    "brain/log.md": "docs/agents/LOG.md"
+  },
+  "idea_folder": "YYYY-MM-<slug>",
+  "report": {
+    "file": "REPORT.md",
+    "template": "research/_TEMPLATE.md",
+    "language": "ru"
+  },
+  "lessons_ledger": "docs/playbook/HARVEST.md"
+}

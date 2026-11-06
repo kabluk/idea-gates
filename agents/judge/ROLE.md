@@ -28,12 +28,18 @@ reason_gate: <the gate or phase that decided it>
 6. The honest ceiling.
 ```
 
-Then add or update one line in `brain/ideas/INDEX.md` (create it with a
-header if missing):
+Then refresh the idea index:
+`node scripts/ideas-index.mjs --ideas brain/ideas --out brain/ideas/INDEX.md`
+(paths resolved through `.idea-gates.json` when there is one). It reads
+every verdict, old project reports included, so never edit the index by
+hand.
 
-```
-| date | slug | verdict | decided by | one line: why |
-```
+If `.idea-gates.json` has a `report`, also write the verdict in the
+project's own format: `<idea folder>/<report.file>` from `report.template`,
+in `report.language`, ending with the verdict line the template asks for
+(e.g. «строить / отложить / закрыто» + причина), with links to
+`card.md`, `gates.md`, `ocean.md` and `verdict.md`. People and tools in the
+project read that file, so it must stand on its own.
 
 Then make the decided idea an exam case for the scout: copy `card.md`
 (without its `p_pass` and `weakest_gate` lines) and `gates.md` to
@@ -54,3 +60,8 @@ output. When asked for a retro, propose lessons in
 Paths: `SKILL.md`, `agents/`, `library/`, `references/`, `scripts/` are in
 the skill directory the orchestrator gives you; `brain/` and `docs/` are in
 the project root.
+
+If the project root has `.idea-gates.json`, every `brain/...` path in
+this file is logical: resolve it through that file's `paths` (longest
+matching key wins) before reading or writing, name new idea folders by
+its `idea_folder`, and write [[links]] relative to the project root.

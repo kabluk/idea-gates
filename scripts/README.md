@@ -1,8 +1,8 @@
 # scripts
 
 Measurement helpers for Phase 2 (the ocean) and two of the idea sources, plus
-three offline checkers used by the agent team (`verify-sources`,
-`track-record`, `brain-lint`). Plain Node.js (18+), no dependencies; HTTP goes
+four offline helpers used by the agent team (`verify-sources`,
+`track-record`, `brain-lint`, `ideas-index`). Plain Node.js (18+), no dependencies; HTTP goes
 through `curl`, so the scripts respect `HTTPS_PROXY`. They are optional — the
 gates in Phase 1 need no tools at all.
 
@@ -84,6 +84,15 @@ librarian runs it weekly.
 
 ```sh
 node scripts/brain-lint.mjs --brain brain
+```
+
+**`ideas-index.mjs`** — no API calls. One table of every judged idea in
+a project (date, verdict, why), read from new `verdict.md` files and from a
+project's existing `REPORT.md` files with a «Вердикт:» / "Verdict:" line.
+Agents read it before opening an idea; the judge regenerates it.
+
+```sh
+node scripts/ideas-index.mjs --ideas research --out research/IDEAS.md
 ```
 
 The three DataForSEO scripts write JSON reports under `research/` by default (override with

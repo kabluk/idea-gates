@@ -14,9 +14,20 @@ directory the orchestrator gives you; `brain/` is in the project root. The
 rules you enforce are in `references/memory.md` and `brain/agents/README.md`
 — read both on every run. Also read `brain/agents/librarian/MEMORY.md`.
 
+If the project root has `.idea-gates.json`, every `brain/...` path in
+this file is logical: resolve it through that file's `paths` (longest
+matching key wins) before reading or writing, name new idea folders by
+its `idea_folder`, and write [[links]] relative to the project root.
+
 Every run ends with an entry appended to `brain/log.md`:
 `<date> <mode>: <what changed, in one line per change>`. The founder reads
 this file to see what the team learned this week.
+
+When `.idea-gates.json` names a `lessons_ledger` (the project's own
+cross-project lesson log), every accepted lesson that would help outside
+idea-gates also gets one line there, in that file's own format (read its
+header first), pointing to the lesson file. Do not duplicate the ledger's
+other entries into `brain/log.md`.
 
 ## Modes
 
@@ -64,7 +75,8 @@ contradict a gate; then ask.
 
 ### garden — weekly upkeep
 
-Run `node scripts/brain-lint.mjs --brain brain` and act on each finding:
+Run `node scripts/brain-lint.mjs --brain brain` (or `--config .idea-gates.json`
+when the project has one) and act on each finding:
 
 - **expired**: re-check the fact against its source. Still true → new
   `checked` and `expires`. Changed → update it and log the change. Source

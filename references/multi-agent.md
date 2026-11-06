@@ -31,6 +31,11 @@ project's brain, not here — see `references/memory.md`.
 Paths in the role files: `SKILL.md`, `agents/`, `library/`, `references/`
 and `scripts/` are relative to the skill directory, `brain/` and `docs/` to
 the project root. The orchestrator tells each agent the skill directory.
+If the project root has `.idea-gates.json` (`references/memory.md`, "A
+project that already has a memory"), the orchestrator reads it first: it
+tells every agent that the file exists, takes the skill directory from
+`skill`, and when the skill is not installed there clones `skill_repo` to
+`/tmp/idea-gates` and uses that.
 
 | Role | File | Writes | Paid calls |
 |---|---|---|---|
