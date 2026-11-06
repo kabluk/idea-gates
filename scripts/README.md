@@ -1,8 +1,10 @@
 # scripts
 
-Measurement helpers for Phase 2 (the ocean) and two of the idea sources. Plain
-Node.js (18+), no dependencies; HTTP goes through `curl`, so the scripts respect
-`HTTPS_PROXY`. They are optional — the gates in Phase 1 need no tools at all.
+Measurement helpers for Phase 2 (the ocean) and two of the idea sources, plus
+four offline helpers used by the agent team (`verify-sources`,
+`track-record`, `brain-lint`, `ideas-index`). Plain Node.js (18+), no dependencies; HTTP goes
+through `curl`, so the scripts respect `HTTPS_PROXY`. They are optional — the
+gates in Phase 1 need no tools at all.
 
 ## Credentials
 
@@ -53,6 +55,46 @@ node scripts/seo-data.mjs volume --keywords keywords.json --location UK
 node scripts/seo-data.mjs serp --query "gpsr responsible person" --location DE
 ```
 
-All three write JSON reports under `research/` by default (override with
+**`verify-sources.mjs`** — no API calls, no credentials. Checks a markdown
+report against its raw data: every number followed by
+`[src: <file.json>#<path>]` must match the value at that path (5% tolerance by
+default). `--strict` also lists numbers with units such as `/mo`, `%` or `$`
+that cite nothing. Used by the auditor in autonomous mode
+(`references/multi-agent.md`); exits non-zero when anything fails.
+
+```sh
+node scripts/verify-sources.mjs brain/ideas/gpsr/ocean.md --strict
+```
+
+**`track-record.mjs`** — no API calls. Scores the scout's card-time
+predictions (`p_pass`, `weakest_gate`) against the gate results: Brier score
+against a baseline, calibration buckets, accuracy by source, which gate kills
+the cards, biggest misses. Also runs the scout's exam with `--predictions`.
+
+```sh
+node scripts/track-record.mjs --ideas brain/ideas --out brain/agents/scout/track-record.md
+node scripts/track-record.mjs --ideas agents/scout/evals/cases --predictions predictions.json
+```
+
+**`brain-lint.mjs`** — no API calls. Hygiene of the brain
+(`references/memory.md`): expired or unsourced facts, lessons without
+evidence links or unused for months, oversized `MEMORY.md`, broken
+`[[links]]`, and how many inbox items and lesson proposals are waiting. The
+librarian runs it weekly.
+
+```sh
+node scripts/brain-lint.mjs --brain brain
+```
+
+**`ideas-index.mjs`** — no API calls. One table of every judged idea in
+a project (date, verdict, why), read from new `verdict.md` files and from a
+project's existing `REPORT.md` files with a «Вердикт:» / "Verdict:" line.
+Agents read it before opening an idea; the judge regenerates it.
+
+```sh
+node scripts/ideas-index.mjs --ideas research --out research/IDEAS.md
+```
+
+The three DataForSEO scripts write JSON reports under `research/` by default (override with
 `--out`). Each call costs real money on your DataForSEO account; check
 `seo-data.mjs balance` first and keep within the budget in your `FOUNDER.md`.

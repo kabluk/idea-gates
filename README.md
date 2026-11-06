@@ -55,10 +55,49 @@ git clone https://github.com/kabluk/idea-gates .claude/skills/idea-gates
 Copy `templates/FOUNDER.example.md` to `docs/FOUNDER.md` and fill it in — or let the skill ask you
 the questions on the first run and write the file for you.
 
+For autonomous mode, also install the role agents:
+copy each `agents/<role>/ROLE.md` to `.claude/agents/` and the brain template into the project — the
+commands are in [`references/multi-agent.md`](references/multi-agent.md#claude-code-interactive)
+(the agents are optional: without them the skill passes the role files to general-purpose subagents).
+
 The optional measurement scripts in `scripts/` need Node.js 18+ and DataForSEO credentials in
 `DATAFORSEO_LOGIN` / `DATAFORSEO_PASSWORD`; see `scripts/README.md`.
 
 Then in Claude Code: *"Run idea-gates on: an AI bookkeeping assistant for Etsy sellers."*
+
+## Autonomous mode: a team of agents
+
+Ask for *"autonomous mode"* and the skill stops working alone. A scout writes candidates, a
+gatekeeper scores each one in parallel, an independent auditor tries to break every verdict, the
+author fixes what the auditor finds, an ocean analyst measures survivors within your budget, a
+red-teamer prepares the external-LLM pass, and a judge writes the verdict. Nothing is accepted
+until an agent that did not do the work has checked it, and every measured number is checked
+against its raw JSON by `scripts/verify-sources.mjs`. You are asked only when money is about to be
+spent, when the auditor needs your judgement, and for the final verdicts.
+
+```mermaid
+flowchart LR
+    W["Role agent<br/>does the phase"] --> A["Auditor<br/>fresh context"]
+    A -- "fix (max 2 rounds)" --> W
+    A -- escalate --> F["Founder"]
+    A -- accept --> N["Next phase"]
+```
+
+Role prompts are in [`agents/`](agents/), the protocol in
+[`references/multi-agent.md`](references/multi-agent.md).
+
+**The team learns.** Agents start every run with an empty context, so their memory is a folder:
+`brain/` in your project (copied from [`templates/brain/`](templates/brain/), open it as an
+Obsidian vault). You drop anything into `brain/inbox/`; a librarian agent turns it into library
+notes, dated facts that expire and idea seeds. Roles propose lessons from decided ideas, and the
+librarian keeps only those backed by cases. The scout predicts each card's chance of passing the
+gates, `scripts/track-record.mjs` scores those predictions, and a change to a role's method is
+kept only if its exam does not get worse. Each role's method cites its sources in
+[`library/`](library/) (Graham, Christensen, Fitzpatrick, Walling, Kahl, Kim & Mauborgne,
+Tetlock). Details: [`references/memory.md`](references/memory.md). They run as Claude Code subagents
+(interactive or headless with `claude -p`), and the same files work as bot instructions on a
+self-hosted runtime such as [Rakazo](https://github.com/elie222/rakazo) for a team that runs
+unattended.
 
 ## Companion skill: video-advisor
 
